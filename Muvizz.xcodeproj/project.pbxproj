@@ -10,6 +10,11 @@
 		0E75C5A31BE3CA9F00844634 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BA8AA51A43E2EF00863FB9 /* SlideMenuController.swift */; };
 		0E75C5A61BE3CAFE00844634 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E75C5A41BE3CAFE00844634 /* Info.plist */; };
 		0EB8EBFF1BE3CF3C00BC2A99 /* SlideMenuControllerSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E75C5A51BE3CAFE00844634 /* SlideMenuControllerSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		232AED781DF903230084394D /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 232AED771DF903230084394D /* iCarousel.m */; };
+		232AED7C1DF903560084394D /* CustomContaintView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 232AED7A1DF903560084394D /* CustomContaintView.xib */; };
+		232AED7D1DF903560084394D /* CustomContaintView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232AED7B1DF903560084394D /* CustomContaintView1.swift */; };
+		232AED7F1DF903E20084394D /* MastHeadCrousalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232AED7E1DF903E20084394D /* MastHeadCrousalCell.swift */; };
+		232AED811DF904DB0084394D /* MastHeadCrousalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 232AED801DF904DB0084394D /* MastHeadCrousalCell.xib */; };
 		C539E6471A315E87003B7CC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539E6461A315E87003B7CC7 /* AppDelegate.swift */; };
 		C539E64A1A315E87003B7CC7 /* SlideMenuControllerSwift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C539E6481A315E87003B7CC7 /* SlideMenuControllerSwift.xcdatamodeld */; };
 		C539E64C1A315E87003B7CC7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539E64B1A315E87003B7CC7 /* MainViewController.swift */; };
@@ -56,6 +61,13 @@
 		0E75C5961BE3CA7900844634 /* Muvizz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Muvizz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E75C5A41BE3CAFE00844634 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = "<group>"; };
 		0E75C5A51BE3CAFE00844634 /* SlideMenuControllerSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SlideMenuControllerSwift.h; path = Source/SlideMenuControllerSwift.h; sourceTree = "<group>"; };
+		232AED761DF903230084394D /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		232AED771DF903230084394D /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		232AED791DF903330084394D /* SwiftExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		232AED7A1DF903560084394D /* CustomContaintView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomContaintView.xib; sourceTree = "<group>"; };
+		232AED7B1DF903560084394D /* CustomContaintView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomContaintView1.swift; sourceTree = "<group>"; };
+		232AED7E1DF903E20084394D /* MastHeadCrousalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastHeadCrousalCell.swift; sourceTree = "<group>"; };
+		232AED801DF904DB0084394D /* MastHeadCrousalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MastHeadCrousalCell.xib; sourceTree = "<group>"; };
 		C539E6411A315E87003B7CC7 /* Muvizz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Muvizz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C539E6451A315E87003B7CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C539E6461A315E87003B7CC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,9 +137,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		232AED751DF903230084394D /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				232AED761DF903230084394D /* iCarousel.h */,
+				232AED771DF903230084394D /* iCarousel.m */,
+			);
+			path = iCarousel;
+			sourceTree = "<group>";
+		};
 		C539E6381A315E87003B7CC7 = {
 			isa = PBXGroup;
 			children = (
+				232AED791DF903330084394D /* SwiftExample-Bridging-Header.h */,
+				232AED751DF903230084394D /* iCarousel */,
 				C5BA8AA41A43E24C00863FB9 /* Source */,
 				C539E6431A315E87003B7CC7 /* SlideMenuControllerSwift */,
 				C539E65C1A315E87003B7CC7 /* SlideMenuControllerSwiftTests */,
@@ -148,6 +171,8 @@
 		C539E6431A315E87003B7CC7 /* SlideMenuControllerSwift */ = {
 			isa = PBXGroup;
 			children = (
+				232AED7A1DF903560084394D /* CustomContaintView.xib */,
+				232AED7B1DF903560084394D /* CustomContaintView1.swift */,
 				C539E6461A315E87003B7CC7 /* AppDelegate.swift */,
 				C5C1CE631A70F7C400B6E411 /* ViewController */,
 				C5C1CE641A70F7EC00B6E411 /* View */,
@@ -191,6 +216,8 @@
 				C5C1CE5C1A70F27500B6E411 /* BaseTableViewCell.swift */,
 				C5BF6A811BEEF1A70064C18E /* DataTableViewCell.swift */,
 				C5BF6A831BEEF1E70064C18E /* DataTableViewCell.xib */,
+				232AED7E1DF903E20084394D /* MastHeadCrousalCell.swift */,
+				232AED801DF904DB0084394D /* MastHeadCrousalCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -378,8 +405,10 @@
 				C5BF6A841BEEF1E70064C18E /* DataTableViewCell.xib in Resources */,
 				0E75C5A61BE3CAFE00844634 /* Info.plist in Resources */,
 				C539E64F1A315E87003B7CC7 /* Main.storyboard in Resources */,
+				232AED7C1DF903560084394D /* CustomContaintView.xib in Resources */,
 				C539E6541A315E87003B7CC7 /* LaunchScreen.xib in Resources */,
 				C539E6511A315E87003B7CC7 /* Images.xcassets in Resources */,
+				232AED811DF904DB0084394D /* MastHeadCrousalCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +438,8 @@
 				C5BD39DE1A6CD17B00D0AF95 /* GoViewController.swift in Sources */,
 				C539E64C1A315E87003B7CC7 /* MainViewController.swift in Sources */,
 				C5BD39E01A6CDC8100D0AF95 /* UIViewController.swift in Sources */,
+				232AED7D1DF903560084394D /* CustomContaintView1.swift in Sources */,
+				232AED7F1DF903E20084394D /* MastHeadCrousalCell.swift in Sources */,
 				C5C1CE611A70F3B600B6E411 /* UITableViewExtension.swift in Sources */,
 				C539E64A1A315E87003B7CC7 /* SlideMenuControllerSwift.xcdatamodeld in Sources */,
 				C5BF6A8C1BF340020064C18E /* ExSlideMenuController.swift in Sources */,
@@ -426,6 +457,7 @@
 				C5BA8AA61A43E2EF00863FB9 /* SlideMenuController.swift in Sources */,
 				C539E66E1A316F5F003B7CC7 /* RightViewController.swift in Sources */,
 				C5C1CE5F1A70F2FD00B6E411 /* String.swift in Sources */,
+				232AED781DF903230084394D /* iCarousel.m in Sources */,
 				C5F179D01BEB2CB500EEDD9A /* UIView.swift in Sources */,
 				C5BD39DA1A6CD12300D0AF95 /* SwiftViewController.swift in Sources */,
 			);
@@ -618,6 +650,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dekatotoro.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/SwiftExample-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -634,6 +667,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "dekatotoro.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/SwiftExample-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

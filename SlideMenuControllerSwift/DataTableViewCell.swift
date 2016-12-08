@@ -18,24 +18,58 @@ struct DataTableViewCellData {
     var text: String
 }
 
-class DataTableViewCell : BaseTableViewCell {
+class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDelegate {
+
     
-    @IBOutlet weak var dataImage: UIImageView!
-    @IBOutlet weak var dataText: UILabel!
+    @IBOutlet weak var craousal: iCarousel!
+    var items: [Int] = []
     
     override func awakeFromNib() {
-        self.dataText?.font = UIFont.italicSystemFont(ofSize: 16)
-        self.dataText?.textColor = UIColor(hex: "9E9E9E")
+        
+        self.craousal.type = .linear
+        self.craousal.isPagingEnabled = false
+        self.craousal.contentOffset=CGSize.init(width: 0, height: 0)
     }
  
+    
     override class func height() -> CGFloat {
-        return 80
+        return 100
     }
     
-    override func setData(_ data: Any?) {
-        if let data = data as? DataTableViewCellData {
-            self.dataImage.setRandomDownloadImage(80, height: 80)
-            self.dataText.text = data.text
+    public func setCellData(_ data: [Int]) {
+        
+        self.items = data;
+        self.craousal.reloadData()
+        self.craousal.scrollToItem(at: 2, animated: true)
+        
+        
+    }
+    
+    public func numberOfItems(in carousel: iCarousel) -> Int {
+        return self.items.count
+    }
+    
+    public func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        
+        var itemView: CustomContaintView1
+        if let view = view as? CustomContaintView1 {
+            itemView = view
+            
+        } else {
+            
+            let arrNibs = Bundle.main.loadNibNamed("CustomContaintView", owner: self, options: nil)
+            itemView = arrNibs?[0] as! CustomContaintView1
+            itemView.frame = CGRect.init(x:5, y: 0, width: 80, height: 100)
         }
+        
+        itemView.lblCount.text = "\(self.items[index])"
+        return itemView
+    }
+    
+    public func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+        if (option == .spacing) {
+            return value * 1.1
+        }
+        return value
     }
 }

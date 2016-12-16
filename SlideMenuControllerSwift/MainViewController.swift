@@ -11,18 +11,35 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
      var items: [Int] = []
+     var storedOffsets = [Int: CGFloat]()
     
-    var mainContens = ["data1", "data2", "data3", "data4", "data5", "data6", "data7", "data8", "data9", "data10", "data11", "data12", "data13", "data14", "data15"]
+    
+    @IBOutlet weak var imageViewLogo: UIImageView!
+    @IBOutlet weak var btnSearch: UIButton!
+    @IBOutlet weak var btnMenue: UIButton!
+    var mainContens = ["data1", "Free", "Pay Per View", "Subscription", "Bundles", "Recently Added"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.registerCellNib(DataTableViewCell.self)
-        self.tableView.registerCellNib(MastHeadCrousalCell.self)
+       // self.tableView.registerCellClass(DataTableViewCell.self)
+        //self.tableView.registerCellClass(MastHeadCrousalCell.self)
+        let  menuImage:UIImage = (btnMenue.imageView?.image)!
+            btnMenue .setImage(menuImage.maskWithColor(color: UIColor.white), for: UIControlState.normal)
+        
+        
+        
+    }
+    
+    @IBAction func btnMenuClick(_ sender: AnyObject) {
+       
+         self.openLeft()
+    }
+    @IBAction func btnSearchClick(_ sender: AnyObject) {
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        for i in 0 ... 99 {
+        for i in 0 ... 10 {
             items.append(i)
         }
     }
@@ -35,7 +52,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setNavigationBarItem()
-        self.openLeft()
+       
         self.navigationController?.navigationBar.isHidden = true
     }
 
@@ -68,17 +85,49 @@ extension MainViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: MastHeadCrousalCell.identifier) as! MastHeadCrousalCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: MastHeadCrousalCell.identifier) as! MastHeadCrousalCell
             cell.setData(items)
             return cell;
             
         } else {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.identifier) as! DataTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.identifier) as! DataTableViewCell
         //let data = DataTableViewCellData(imageUrl: "dummy", text: mainContens[indexPath.row])
-            cell.setCellData(items)
+            
+            cell.setCellData(items,sectionTitle: mainContens[indexPath.row])
+            cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+            cell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
             return cell;
         }
         return UITableViewCell()
+    }
+}
+
+
+// func tableView(tableView: UITableView,
+//                        didEndDisplayingCell cell: UITableViewCell,
+//                        forRowAtIndexPath indexPath: NSIndexPath) {
+//    
+//    guard let tableViewCell = cell as? DataTableViewCell else { return }
+//    
+//    storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
+//}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        
+        return items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCollection",
+                                                      for: indexPath)
+        
+        //cell.te = items [indexPath.row]
+        
+        return cell
     }
 }
 

@@ -18,32 +18,73 @@ struct DataTableViewCellData {
     var text: String
 }
 
-class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDelegate {
+class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDelegate, TilesScrollerViewDataSource {
 
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBOutlet weak var craousal: iCarousel!
+    @IBOutlet weak var lblSectionTitle: UILabel!
+    //@IBOutlet weak var craousal: iCarousel!
+    @IBOutlet weak var btnViewAll: UIButton!
+    @IBOutlet weak var craousal: TilesScrollerView!
     var items: [Int] = []
+    var cellSectonTitle:String = ""
     
     override func awakeFromNib() {
         
-        self.craousal.type = .linear
-        self.craousal.isPagingEnabled = false
-        self.craousal.contentOffset=CGSize.init(width: 0, height: 0)
+        //self.craousal.type = .linear
+        //self.craousal.isPagingEnabled = false
+        //self.craousal.contentOffset=CGSize.init(width: 0, height: 0)
+        btnViewAll.layer.cornerRadius = 5.0
+        btnViewAll.layer.borderWidth = 1.0
+        btnViewAll.layer.borderColor = UIColor.white.cgColor
+        lblSectionTitle.text = "Section Title"
+        
+    }
+    
+    func setCollectionViewDataSourceDelegate <D: protocol<UICollectionViewDataSource, UICollectionViewDelegate>> (dataSourceDelegate: D, forRow row: Int) {
+        
+        collectionView.delegate = dataSourceDelegate
+        collectionView.dataSource = dataSourceDelegate
+        collectionView.tag = row
+        collectionView.reloadData()
     }
  
+    var collectionViewOffset: CGFloat {
+        get {
+            return collectionView.contentOffset.x
+        }
+        
+        set {
+            collectionView.contentOffset.x = newValue
+        }
+    }
     
     override class func height() -> CGFloat {
-        return 100
+        return 215
     }
     
-    public func setCellData(_ data: [Int]) {
+    public func setCellData(_ data: [Int] , sectionTitle:String) {
         
-        self.items = data;
-        self.craousal.reloadData()
-        self.craousal.scrollToItem(at: 2, animated: true)
-        
-        
+        self.items = data
+        self.lblSectionTitle.text = sectionTitle
     }
+    
+    func noOfItemsInTilesScrollerView(tilesScrollerView: TilesScrollerView) -> Int {
+        
+        return self.items.count
+    }
+    
+    func viewInTilesScrollerViewAtIndex(tilesScrollerView: TilesScrollerView, reusing view: UIView?, index: Int) -> UIView {
+        
+        if  view == nil {
+            
+            return UIView.init(frame: CGRect.init(x: 0.0, y: 0.0, width:100, height: 100))
+        }
+        
+        return view!;
+    }
+    
+   
     
     public func numberOfItems(in carousel: iCarousel) -> Int {
         return self.items.count

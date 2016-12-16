@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>menusList</key>
+	<array>
+		<dict>
+			<key>expendeditem</key>
+			<array/>
+			<key>isexpanded</key>
+			<false/>
+			<key>itemId</key>
+			<integer>101</integer>
+			<key>Title</key>
+			<string>Home</string>
+		</dict>
+		<dict>
+			<key>expendeditem</key>
+			<array>
+				<dict>
+					<key>Submenutitle</key>
+					<string>Short Film</string>
+					<key>submenuId</key>
+					<integer>201</integer>
+				</dict>
+				<dict>
+					<key>Submenutitle</key>
+					<string>Feature Films</string>
+					<key>submenuId</key>
+					<integer>202</integer>
+				</dict>
+				<dict>
+					<key>Submenutitle</key>
+					<string>Documentary</string>
+					<key>submenuId</key>
+					<integer>203</integer>
+				</dict>
+				<dict>
+					<key>Submenutitle</key>
+					<string>Award Winning</string>
+					<key>submenuId</key>
+					<integer>204</integer>
+				</dict>
+				<dict>
+					<key>Submenutitle</key>
+					<string>Regional</string>
+					<key>submenuId</key>
+					<integer>205</integer>
+				</dict>
+				<dict>
+					<key>Submenutitle</key>
+					<string>Web Series</string>
+					<key>submenuId</key>
+					<integer>206</integer>
+				</dict>
+			</array>
+			<key>isexpanded</key>
+			<true/>
+			<key>itemId</key>
+			<integer>102</integer>
+			<key>Title</key>
+			<string>Catagories</string>
+		</dict>
+		<dict>
+			<key>expendeditem</key>
+			<array/>
+			<key>isexpanded</key>
+			<false/>
+			<key>itemId</key>
+			<integer>103</integer>
+			<key>Title</key>
+			<string>The Diary</string>
+		</dict>
+		<dict>
+			<key>expendeditem</key>
+			<array/>
+			<key>isexpanded</key>
+			<false/>
+			<key>itemId</key>
+			<integer>104</integer>
+			<key>Title</key>
+			<string>Log In</string>
+		</dict>
+		<dict>
+			<key>expendeditem</key>
+			<array/>
+			<key>isexpanded</key>
+			<false/>
+			<key>itemId</key>
+			<integer>105</integer>
+			<key>Title</key>
+			<string>Help</string>
+		</dict>
+	</array>
+</dict>
+</plist>

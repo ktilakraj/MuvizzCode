@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 enum LeftMenu: Int {
     case main = 0
     case swift
@@ -22,7 +23,7 @@ protocol LeftMenuProtocol : class {
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
     @IBOutlet weak var tableView: UITableView!
-    var menus = ["Main", "Swift", "Java", "Go", "NonMenu"]
+    var menus = [AnyObject]()
     var mainViewController: UIViewController!
     var swiftViewController: UIViewController!
     var javaViewController: UIViewController!
@@ -33,10 +34,24 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    func getMenuData() -> Void {
+        
+    let path = Bundle.main.path(forResource: "sidemenu", ofType: "plist")
+    let dict = NSDictionary(contentsOfFile: path!) as! [String: AnyObject]
+    menus = dict["menusList"] as! [AnyObject]
+        
+    print("the array:\(menus)")
+    //let path = NSBundle.bun().pathForResource("Info", ofType: "plist")!
+    //let dict = NSDictionary(contentsOfFile: path) as! [String: AnyObject]
+        
+        
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getMenuData()
         self.tableView.separatorColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -87,19 +102,16 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
 
 extension LeftViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let menu = LeftMenu(rawValue: indexPath.row) {
-            switch menu {
-            case .main, .swift, .java, .go, .nonMenu:
-                return BaseTableViewCell.height()
-            }
-        }
-        return 0
+        
+         return BaseTableViewCell.height()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let menu = LeftMenu(rawValue: indexPath.row) {
-            self.changeViewController(menu)
-        }
+        
+//        if let menu = LeftMenu(rawValue: indexPath.row) {
+//            self.changeViewController(menu)
+//        }
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -117,15 +129,24 @@ extension LeftViewController : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let menu = LeftMenu(rawValue: indexPath.row) {
-            switch menu {
-            case .main, .swift, .java, .go, .nonMenu:
-                let cell = BaseTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: BaseTableViewCell.identifier)
-                cell.setData(menus[indexPath.row])
-                return cell
-            }
-        }
-        return UITableViewCell()
+//        if let menu = LeftMenu(rawValue: indexPath.row) {
+//            switch menu {
+//            case .main, .swift, .java, .go, .nonMenu:
+//                let cell = BaseTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: BaseTableViewCell.identifier)
+//                cell.setData(menus[indexPath.row])
+//                return cell
+//            }
+//        }
+        
+        let cell = BaseTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: BaseTableViewCell.identifier)
+        
+        let dictAtIndex = menus[indexPath.row] as? AnyObject
+        
+        cell.setData(dictAtIndex)
+        return cell
+
+        
+        //return UITableViewCell()
     }
     
 }

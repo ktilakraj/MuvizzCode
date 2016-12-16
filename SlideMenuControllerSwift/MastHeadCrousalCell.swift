@@ -11,7 +11,7 @@ import UIKit
 
 open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDataSource {
     
-    @IBOutlet weak var craousal: iCarousel!
+    @IBOutlet weak var craousal: iCarousel?
     var items: [Int] = []
     
     class var identifier: String { return String.className(self) }
@@ -33,8 +33,8 @@ open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDa
     
     open func setup() {
         
-        self.craousal.type = .linear
-        self.craousal.isPagingEnabled = true
+        self.craousal?.type = .linear
+        self.craousal?.isPagingEnabled = true
     }
     
     open class func height() -> CGFloat {
@@ -43,13 +43,13 @@ open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDa
     
     open func setData(_ data: [Int]) {
         
-        self.backgroundColor = UIColor(hex: "F1F8E9")
+        self.backgroundColor = UIColor(hex: "FFFFFF")
     
         for  item in data {
     
             self.items.append(item)
         }
-        self.craousal .reloadData()
+        self.craousal? .reloadData()
         
     }
     
@@ -82,7 +82,8 @@ open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDa
             itemView.frame = CGRect.init(x:5, y: 0, width: carousel.bounds.size.width-10, height: 200)
         }
         
-        itemView.lblCount.text = "\(items[index])"
+        itemView.lblCount.text = "Card \(items[index])"
+        itemView.lblCount.textColor = UIColor.black
         return itemView
     }
     

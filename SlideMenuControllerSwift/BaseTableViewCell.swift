@@ -30,15 +30,14 @@ open class BaseTableViewCell : UITableViewCell {
         return 48
     }
     
-    open func setData(_ data: Any?) {
+    open func setData(_ data: SubmenuDetails) {
         
-        self.backgroundColor = UIColor(hex: "000000")
+        self.backgroundColor = UIColor(hex: "c1c1c1")
         self.textLabel?.font = UIFont.italicSystemFont(ofSize: 18)
         self.textLabel?.textColor = UIColor(hex: "ffffff")
-        let theData = data as? Dictionary <String ,AnyObject>
-        if let menuText = theData?["Title"] as? String {
-            self.textLabel?.text = menuText
-        }
+        
+        self.textLabel?.text = data.subMenuTitle
+      
     }
     
     override open func setHighlighted(_ highlighted: Bool, animated: Bool) {

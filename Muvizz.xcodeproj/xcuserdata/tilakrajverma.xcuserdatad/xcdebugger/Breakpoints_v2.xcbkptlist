@@ -140,13 +140,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlideMenuControllerSwift/LeftViewController.swift"
-            timestampString = "503556965.109962"
+            timestampString = "503602954.13873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "getMenuData()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SlideMenuControllerSwift/UIImageView.swift"
+            timestampString = "503604058.188651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "setRandomDownloadImage(_:height:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in Muvizz):__ObjC.UIImageView.(setRandomDownloadImage (Swift.Int, height : Swift.Int) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Muvizz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tilakrajverma/Documents/Git%20iOS/Git-Muvizz/MuvizzCode/SlideMenuControllerSwift/UIImageView.swift"
+                  timestampString = "503604071.530142"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "71">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in Muvizz):__ObjC.UIImageView.(setRandomDownloadImage (Swift.Int, height : Swift.Int) -&gt; ()).(closure #1).(closure #1).(closure #1)"
+                  moduleName = "Muvizz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tilakrajverma/Documents/Git%20iOS/Git-Muvizz/MuvizzCode/SlideMenuControllerSwift/UIImageView.swift"
+                  timestampString = "503604071.532012"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

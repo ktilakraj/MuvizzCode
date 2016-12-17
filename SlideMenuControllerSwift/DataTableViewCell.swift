@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+protocol  DataTableViewCellDelegate {
+    
+    func didClickOnViewAll() -> Void
+
+}
 struct DataTableViewCellData {
     
     init(imageUrl: String, text: String) {
@@ -28,6 +34,8 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
     @IBOutlet weak var craousal: TilesScrollerView!
     var items: [Int] = []
     var cellSectonTitle:String = ""
+    var delegate:DataTableViewCellDelegate!
+    
     
     override func awakeFromNib() {
         
@@ -38,6 +46,13 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
         btnViewAll.layer.borderWidth = 1.0
         btnViewAll.layer.borderColor = UIColor.white.cgColor
         lblSectionTitle.text = "Section Title"
+        btnViewAll.addTarget(self, action: #selector(btnViewAllClick(sender:)), for: UIControlEvents.touchUpInside)
+        
+    }
+    
+    func btnViewAllClick(sender:UIButton) -> Void {
+        
+        self.delegate.didClickOnViewAll()
         
     }
     
@@ -58,6 +73,7 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
             collectionView.contentOffset.x = newValue
         }
     }
+    
     
     override class func height() -> CGFloat {
         return 215

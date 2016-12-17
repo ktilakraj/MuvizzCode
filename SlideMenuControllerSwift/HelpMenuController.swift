@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class NonMenuController: UIViewController {
+class HelpMenuController: UIViewController {
     
     weak var delegate: LeftMenuProtocol?
     
@@ -20,7 +20,8 @@ class NonMenuController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.removeNavigationBarItem()
+        //self.removeNavigationBarItem()
+        self.setNavigationBarItem()
     }
   
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -29,7 +30,7 @@ class NonMenuController: UIViewController {
             guard let vc = (self.slideMenuController()?.mainViewController as? UINavigationController)?.topViewController else {
                 return
             }
-            if vc.isKind(of: NonMenuController.self)  {
+            if vc.isKind(of: HelpMenuController.self)  {
                 self.slideMenuController()?.removeLeftGestures()
                 self.slideMenuController()?.removeRightGestures()
             }

@@ -9,11 +9,11 @@ import UIKit
 
 
 enum LeftMenu: Int {
-    case main = 0
-    case swift
-    case java
-    case go
-    case nonMenu
+    case main = 101
+    case catagories
+    case theDiary
+    case login
+    case help
 }
 
 protocol LeftMenuProtocol : class {
@@ -58,14 +58,14 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     @IBOutlet weak var tableView: UITableView!
     var menus = [MenuDetails]()
     var mainViewController: UIViewController!
-    var swiftViewController: UIViewController!
-    var javaViewController: UIViewController!
-    var goViewController: UIViewController!
-    var nonMenuViewController: UIViewController!
+    var detailsViewController: UIViewController!
+    var theDairyViewController: UIViewController!
+    var loginViewController: UIViewController!
+    var helpViewController: UIViewController!
     var imageHeaderView: ImageHeaderView!
     var  isExpandedIndex:Int = -1
     
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -102,18 +102,18 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let swiftViewController = storyboard.instantiateViewController(withIdentifier: "SwiftViewController") as! SwiftViewController
-        self.swiftViewController = UINavigationController(rootViewController: swiftViewController)
+        let swiftViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        self.detailsViewController = UINavigationController(rootViewController: swiftViewController)
         
-        let javaViewController = storyboard.instantiateViewController(withIdentifier: "JavaViewController") as! JavaViewController
-        self.javaViewController = UINavigationController(rootViewController: javaViewController)
+        let javaViewController = storyboard.instantiateViewController(withIdentifier: "TheDiaryViewController") as! TheDiaryViewController
+        self.theDairyViewController = UINavigationController(rootViewController: javaViewController)
         
-        let goViewController = storyboard.instantiateViewController(withIdentifier: "GoViewController") as! GoViewController
-        self.goViewController = UINavigationController(rootViewController: goViewController)
+        let goViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.loginViewController = UINavigationController(rootViewController: goViewController)
         
-        let nonMenuController = storyboard.instantiateViewController(withIdentifier: "NonMenuController") as! NonMenuController
+        let nonMenuController = storyboard.instantiateViewController(withIdentifier: "HelpMenuController") as! HelpMenuController
         nonMenuController.delegate = self
-        self.nonMenuViewController = UINavigationController(rootViewController: nonMenuController)
+        self.helpViewController = UINavigationController(rootViewController: nonMenuController)
         
         self.tableView.registerCellClass(BaseTableViewCell.self)
         
@@ -131,18 +131,34 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         self.view.layoutIfNeeded()
     }
     
+    //MARK:CHANGE THE MENU CONTROLLER
+    
     func changeViewController(_ menu: LeftMenu) {
         switch menu {
         case .main:
             self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
-        case .swift:
-            self.slideMenuController()?.changeMainViewController(self.swiftViewController, close: true)
-        case .java:
-            self.slideMenuController()?.changeMainViewController(self.javaViewController, close: true)
-        case .go:
-            self.slideMenuController()?.changeMainViewController(self.goViewController, close: true)
-        case .nonMenu:
-            self.slideMenuController()?.changeMainViewController(self.nonMenuViewController, close: true)
+        case .theDiary:
+            self.slideMenuController()?.changeMainViewController(self.theDairyViewController, close: true)
+        case .login:
+            self.slideMenuController()?.changeMainViewController(self.loginViewController, close: true)
+        case .help:
+            self.slideMenuController()?.changeMainViewController(self.helpViewController, close: true)
+        case .catagories: break
+            
+        }
+    }
+    
+    //MARK:CHANGE THE SUBMENU CONTROLLER
+    
+    func changeSubViewController(_ submenuDetail:SubmenuDetails) -> Void {
+        
+         self.slideMenuController()?.changeMainViewController(self.detailsViewController, close: true)
+         let vc = (self.slideMenuController()?.mainViewController as? UINavigationController)?.topViewController
+        if (vc?.isKind(of: DetailsViewController.self))!  {
+            
+            let viewController = vc as? DetailsViewController
+            viewController?.submenuDetals = submenuDetail
+            viewController?.setupData()
         }
     }
 }
@@ -159,9 +175,11 @@ extension LeftViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        if let menu = LeftMenu(rawValue: indexPath.row) {
-//            self.changeViewController(menu)
-//        }
+        let  array_atIndex:MenuDetails = menus[indexPath.section]
+        if  array_atIndex.menuId == 102 {
+            
+            self.changeSubViewController(array_atIndex.subMenus[indexPath.row])
+        }
         
     }
     
@@ -204,6 +222,10 @@ extension LeftViewController : UITableViewDelegate {
                 isExpandedIndex = -1
             }
             tableView.reloadSections(IndexSet(integer: sender.tag), with: .none)
+        } else {
+            
+            let menu = LeftMenu(rawValue: array_atIndex.menuId)
+            changeViewController(menu!)
         }
         print("Button tapped\(sender.tag)")
     }

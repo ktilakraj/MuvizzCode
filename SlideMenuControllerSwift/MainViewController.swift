@@ -7,12 +7,13 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController,DataTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
      var items: [Int] = []
      var storedOffsets = [Int: CGFloat]()
-    
+    weak var delegate: LeftMenuProtocol?
+    var detailsViewController: UIViewController!
     
     @IBOutlet weak var imageViewLogo: UIImageView!
     @IBOutlet weak var btnSearch: UIButton!
@@ -53,7 +54,7 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setNavigationBarItem()
        
-        self.navigationController?.navigationBar.isHidden = true
+        //self.navigationController?.navigationBar.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,12 +94,23 @@ extension MainViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.identifier) as! DataTableViewCell
         //let data = DataTableViewCellData(imageUrl: "dummy", text: mainContens[indexPath.row])
             
+            cell.delegate = self
             cell.setCellData(items,sectionTitle: mainContens[indexPath.row])
             cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
             cell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
             return cell;
         }
-        return UITableViewCell()
+        
+        //return UITableViewCell()
+    }
+    
+    func didClickOnViewAll() {
+        
+        print("the View All Click")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let swiftViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        self.detailsViewController = UINavigationController(rootViewController: swiftViewController)
+        self.slideMenuController()?.changeMainViewController(self.detailsViewController, close: true)
     }
 }
 

@@ -16,8 +16,24 @@ class DetailsViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var collectionviewDetais: UICollectionView!
     @IBOutlet weak var lblDetails: UILabel!
      var tempSubmenuDetals : SubmenuDetails?
+    
+    
+    @IBOutlet weak var chooseArticleButton: UIButton!
+    let chooseArticleDropDown = DropDown()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dropDwonInitialSetup()
+    }
+    
+    
+    func dropDwonInitialSetup() -> Void {
+        
+        setupDropDowns()
+        dropDowns.forEach { $0.dismissMode = .onTap }
+        dropDowns.forEach { $0.direction = .any }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +89,87 @@ class DetailsViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.navigationController?.pushViewController(swiftViewController, animated: true)
     }
     
+    //MARK-DropDown Setup
     
+    func setupDropDowns() {
+        setupChooseArticleDropDown()
+        //setupAmountDropDown()
+        //setupChooseDropDown()
+        //setupCenteredDropDown()
+        //setupRightBarDropDown()
+    }
     
+    func setupChooseArticleDropDown() {
+        chooseArticleDropDown.anchorView = chooseArticleButton
+        
+        // Will set a custom with instead of anchor view width
+        //		dropDown.width = 100
+        
+        // By default, the dropdown will have its origin on the top left corner of its anchor view
+        // So it will come over the anchor view and hide it completely
+        // If you want to have the dropdown underneath your anchor view, you can do this:
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y: chooseArticleButton.bounds.height)
+        
+        // You can also use localizationKeysDataSource instead. Check the docs.
+        chooseArticleDropDown.dataSource = [
+            "All",
+            "Hindi",
+            "English",
+            "Telgu",
+            "Bengali",
+            "Marathi",
+            "Panjabi",
+            "Urdu",
+            "Kannada",
+            "Tamil",
+            "Japness",
+            "French",
+            "Arabic",
+            "Spanish",
+            "Chinese",
+            "German",
+            "Polish",
+            "Dari"
+        ]
+        
+        // Action triggered on selection
+        chooseArticleDropDown.selectionAction = { [unowned self] (index, item) in
+            self.chooseArticleButton.setTitle(item, for: .normal)
+        }
+        
+        chooseArticleDropDown.selectRow(at: 0)
+        
+        // Action triggered on dropdown cancelation (hide)
+        //		dropDown.cancelAction = { [unowned self] in
+        //			// You could for example deselect the selected item
+        //			self.dropDown.deselectRowAtIndexPath(self.dropDown.indexForSelectedRow)
+        //			self.actionButton.setTitle("Canceled", forState: .Normal)
+        //		}
+        
+        // You can manually select a row if needed
+        //		dropDown.selectRowAtIndex(3)
+    }
+    
+    @IBAction func chooseArticle(_ sender: AnyObject) {
+        chooseArticleDropDown.show()
+    }
+    lazy var dropDowns: [DropDown] = {
+        return [
+            self.chooseArticleDropDown//,
+            //            self.amountDropDown,
+            //            self.chooseDropDown,
+            //            self.centeredDropDown,
+            //            self.rightBarDropDown
+        ]
+    }()
+    
+    func setupDefaultDropDown() {
+        DropDown.setupDefaultAppearance()
+        
+        dropDowns.forEach {
+            $0.cellNib = UINib(nibName: "DropDownCell", bundle: Bundle(for: DropDownCell.self))
+            $0.customCellConfiguration = nil
+        }
+    }
+
 }

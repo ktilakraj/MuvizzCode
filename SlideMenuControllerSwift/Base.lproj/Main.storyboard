@@ -226,7 +226,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellCollection" id="j1c-U4-UTs">
-                                                            <rect key="frame" x="5" y="5.5" width="120" height="140"/>
+                                                            <rect key="frame" x="5" y="6" width="120" height="140"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
@@ -298,19 +298,36 @@
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fc-LW-3xq">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bao-vm-zME">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bao-vm-zME">
+                                        <frame key="frameInset" minX="5" width="380" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="nZb-6k-Ed1"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oj7-VF-tG9">
+                                        <frame key="frameInset" minX="396" width="199" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="JZI-rv-ku6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="All"/>
+                                        <connections>
+                                            <action selector="chooseArticle:" destination="I9w-x4-mAi" eventType="touchUpInside" id="i5S-G8-tS8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.40000000000000002" green="0.74509803919999995" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Bao-vm-zME" secondAttribute="trailing" id="Fbv-DT-OPE"/>
-                                    <constraint firstItem="Bao-vm-zME" firstAttribute="leading" secondItem="9fc-LW-3xq" secondAttribute="leading" id="Mf4-QA-QpN"/>
+                                    <constraint firstItem="oj7-VF-tG9" firstAttribute="leading" secondItem="Bao-vm-zME" secondAttribute="trailing" constant="5" id="0SG-AG-E7o"/>
+                                    <constraint firstAttribute="trailing" secondItem="oj7-VF-tG9" secondAttribute="trailing" constant="5" id="1O8-vx-SRJ"/>
+                                    <constraint firstItem="Bao-vm-zME" firstAttribute="leading" secondItem="9fc-LW-3xq" secondAttribute="leading" constant="5" id="AcB-QX-R8c"/>
+                                    <constraint firstItem="oj7-VF-tG9" firstAttribute="leading" secondItem="Bao-vm-zME" secondAttribute="trailing" constant="5" id="WTQ-fF-bgf"/>
                                     <constraint firstAttribute="height" constant="44" id="bau-6n-QkP"/>
-                                    <constraint firstAttribute="bottom" secondItem="Bao-vm-zME" secondAttribute="bottom" id="khQ-Cw-3Qe"/>
-                                    <constraint firstItem="Bao-vm-zME" firstAttribute="top" secondItem="9fc-LW-3xq" secondAttribute="top" id="rgg-3Z-MUe"/>
+                                    <constraint firstItem="Bao-vm-zME" firstAttribute="top" secondItem="9fc-LW-3xq" secondAttribute="top" id="fWV-6S-Oo8"/>
+                                    <constraint firstItem="oj7-VF-tG9" firstAttribute="top" secondItem="9fc-LW-3xq" secondAttribute="top" id="fld-RD-HoB"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yki-0l-Nq6">
@@ -354,13 +371,14 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="chooseArticleButton" destination="oj7-VF-tG9" id="EVZ-bO-1HQ"/>
                         <outlet property="collectionviewDetais" destination="yki-0l-Nq6" id="YcB-vo-qgu"/>
                         <outlet property="lblDetails" destination="Bao-vm-zME" id="JVK-Xu-VIK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0gN-ZX-EvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170" y="1424"/>
+            <point key="canvasLocation" x="-171.19999999999999" y="1423.9880059970017"/>
         </scene>
         <!--Final Detail View Controller-->
         <scene sceneID="1SP-in-F3v">

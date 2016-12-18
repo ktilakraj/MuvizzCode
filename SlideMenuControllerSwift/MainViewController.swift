@@ -92,18 +92,15 @@ extension MainViewController : UITableViewDataSource {
             
         } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.identifier) as! DataTableViewCell
-        //let data = DataTableViewCellData(imageUrl: "dummy", text: mainContens[indexPath.row])
-            
             cell.delegate = self
             cell.setCellData(items,sectionTitle: mainContens[indexPath.row])
             cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
             cell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
             return cell;
         }
-        
-        //return UITableViewCell()
     }
     
+    //MARK:VIEW ALL CLICK HERE
     func didClickOnViewAll() {
         
         print("the View All Click")

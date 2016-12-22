@@ -16,6 +16,7 @@
 		232AED7D1DF903560084394D /* CustomContaintView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232AED7B1DF903560084394D /* CustomContaintView1.swift */; };
 		232AED7F1DF903E20084394D /* MastHeadCrousalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232AED7E1DF903E20084394D /* MastHeadCrousalCell.swift */; };
 		234720E61E0062B10053C3CC /* TilesScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234720E51E0062B10053C3CC /* TilesScrollerView.swift */; };
+		2363CCE51E0C5185008A3B6D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2363CCE41E0C5185008A3B6D /* DataManager.swift */; };
 		23C765AB1E06C1E40007BF80 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C765A11E06C1E40007BF80 /* DPDConstants.swift */; };
 		23C765AC1E06C1E40007BF80 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C765A21E06C1E40007BF80 /* DPDKeyboardListener.swift */; };
 		23C765AD1E06C1E40007BF80 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C765A31E06C1E40007BF80 /* DPDUIView+Extension.swift */; };
@@ -101,6 +102,7 @@
 		232AED7B1DF903560084394D /* CustomContaintView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomContaintView1.swift; sourceTree = "<group>"; };
 		232AED7E1DF903E20084394D /* MastHeadCrousalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastHeadCrousalCell.swift; sourceTree = "<group>"; };
 		234720E51E0062B10053C3CC /* TilesScrollerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TilesScrollerView.swift; sourceTree = "<group>"; };
+		2363CCE41E0C5185008A3B6D /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		23C7659F1E06C1E40007BF80 /* DropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDown.h; sourceTree = "<group>"; };
 		23C765A11E06C1E40007BF80 /* DPDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
 		23C765A21E06C1E40007BF80 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDKeyboardListener.swift; sourceTree = "<group>"; };
@@ -189,6 +191,14 @@
 			path = iCarousel;
 			sourceTree = "<group>";
 		};
+		2363CCE31E0C5173008A3B6D /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				2363CCE41E0C5185008A3B6D /* DataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
 		23C7659D1E06C1C20007BF80 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +273,7 @@
 		C539E6431A315E87003B7CC7 /* SlideMenuControllerSwift */ = {
 			isa = PBXGroup;
 			children = (
+				2363CCE31E0C5173008A3B6D /* DataManager */,
 				232AED7A1DF903560084394D /* CustomContaintView.xib */,
 				232AED7B1DF903560084394D /* CustomContaintView1.swift */,
 				C539E6461A315E87003B7CC7 /* AppDelegate.swift */,
@@ -562,6 +573,7 @@
 				C5C1CE5F1A70F2FD00B6E411 /* String.swift in Sources */,
 				23C765AB1E06C1E40007BF80 /* DPDConstants.swift in Sources */,
 				23C765B01E06C1E40007BF80 /* DropDown+Appearance.swift in Sources */,
+				2363CCE51E0C5185008A3B6D /* DataManager.swift in Sources */,
 				232AED781DF903230084394D /* iCarousel.m in Sources */,
 				C5F179D01BEB2CB500EEDD9A /* UIView.swift in Sources */,
 				C5BD39DA1A6CD12300D0AF95 /* DetailsViewController.swift in Sources */,

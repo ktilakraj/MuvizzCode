@@ -22,13 +22,9 @@ class MainViewController: UIViewController,DataTableViewCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.tableView.registerCellClass(DataTableViewCell.self)
-        //self.tableView.registerCellClass(MastHeadCrousalCell.self)
+    
         let  menuImage:UIImage = (btnMenue.imageView?.image)!
             btnMenue .setImage(menuImage.maskWithColor(color: UIColor.white), for: UIControlState.normal)
-        
-        
-        
     }
     
     @IBAction func btnMenuClick(_ sender: AnyObject) {

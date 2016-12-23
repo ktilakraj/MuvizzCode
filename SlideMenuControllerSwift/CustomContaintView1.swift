@@ -9,7 +9,19 @@
 import UIKit
 
 
+
 class CustomContaintView1: UIView {
     
+    @IBOutlet weak var imageViewbanner: UIImageView!
     @IBOutlet weak var lblCount: UILabel!
+    var  bannerRoot:BannerSubRoot!
+    func setbannerData(_ data:BannerSubRoot!) -> Void {
+        
+        self.bannerRoot = data
+        self.lblCount.text = "\(data.type!)"
+        self.lblCount.textColor = UIColor.black
+        let imageUrl:String = "\(Constants.BASEURL)\(data.imageNode!.path)"
+        self.imageViewbanner.load.request(with: imageUrl)
+        
+    }
 }

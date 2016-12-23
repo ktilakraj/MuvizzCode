@@ -12,7 +12,7 @@ import UIKit
 open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDataSource {
     
     @IBOutlet weak var craousal: iCarousel?
-    var items: [Int] = []
+    var items: [BannerSubRoot] = []
     
     class var identifier: String { return String.className(self) }
     
@@ -41,7 +41,7 @@ open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDa
         return 211
     }
     
-    open func setData(_ data: [Int]) {
+    open func setData(_ data: [BannerSubRoot]) {
         
         self.backgroundColor = UIColor(hex: "FFFFFF")
     
@@ -50,7 +50,6 @@ open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDa
             self.items.append(item)
         }
         self.craousal? .reloadData()
-        
     }
     
     override open func setHighlighted(_ highlighted: Bool, animated: Bool) {
@@ -82,8 +81,8 @@ open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDa
             itemView.frame = CGRect.init(x:5, y: 0, width: carousel.bounds.size.width-10, height: 200)
         }
         
-        itemView.lblCount.text = "Card \(items[index])"
-        itemView.lblCount.textColor = UIColor.black
+        let indexObject = items[index]
+        itemView .setbannerData(indexObject)
         return itemView
     }
     

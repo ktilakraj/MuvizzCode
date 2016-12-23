@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,7 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0EO-So-oCF">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8N8-Ig-bjw">
+                    <rect key="frame" x="87" y="67" width="201" height="66"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="66" id="4K1-bx-bgp"/>
                     </constraints>
@@ -24,16 +31,21 @@
             <constraints>
                 <constraint firstItem="8N8-Ig-bjw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="87" id="8p8-qa-I0I"/>
                 <constraint firstItem="8N8-Ig-bjw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="67" id="8td-Sj-owR"/>
+                <constraint firstItem="0EO-So-oCF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Aef-5S-PIC"/>
+                <constraint firstItem="0EO-So-oCF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MrP-yg-5PS"/>
+                <constraint firstAttribute="trailing" secondItem="0EO-So-oCF" secondAttribute="trailing" id="Xum-m1-rLU"/>
                 <constraint firstAttribute="trailing" secondItem="8N8-Ig-bjw" secondAttribute="trailing" constant="87" id="iqR-kG-pR5"/>
+                <constraint firstAttribute="bottom" secondItem="0EO-So-oCF" secondAttribute="bottom" id="oMR-28-N1U"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="imageViewbanner" destination="0EO-So-oCF" id="tQy-qq-yGT"/>
                 <outlet property="lblCount" destination="8N8-Ig-bjw" id="dux-xD-rxp"/>
             </connections>
-            <point key="canvasLocation" x="1.5" y="-136"/>
+            <point key="canvasLocation" x="-124" y="-190"/>
         </view>
     </objects>
 </document>

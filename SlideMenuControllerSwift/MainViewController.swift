@@ -18,13 +18,35 @@ class MainViewController: UIViewController,DataTableViewCellDelegate {
     @IBOutlet weak var imageViewLogo: UIImageView!
     @IBOutlet weak var btnSearch: UIButton!
     @IBOutlet weak var btnMenue: UIButton!
+    var  bannerdata: BannerMain?
+    
     var mainContens = ["data1", "Free", "Pay Per View", "Subscription", "Bundles", "Recently Added"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+    
+        
         let  menuImage:UIImage = (btnMenue.imageView?.image)!
             btnMenue .setImage(menuImage.maskWithColor(color: UIColor.white), for: UIControlState.normal)
+        
+        getdataAndReload()
+    }
+    
+    func  getdataAndReload() {
+        
+        DataManager.sharedInstance.getBannerData { (data , isSuccess) in
+            
+            if isSuccess == true {
+    
+                DispatchQueue.main.async {
+                    
+                    self.bannerdata = data as? BannerMain
+                    self.tableView .reloadData()
+                }
+                
+            }
+        }
     }
     
     @IBAction func btnMenuClick(_ sender: AnyObject) {
@@ -62,7 +84,13 @@ extension MainViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             
-            return MastHeadCrousalCell.height()
+            if self.bannerdata == nil {
+                return 0
+            }
+            if (self.bannerdata?.arrBannerrs.count)! > 0  {
+                 return MastHeadCrousalCell.height()
+            }
+            return 0
         }
         return DataTableViewCell.height()
     }
@@ -83,7 +111,13 @@ extension MainViewController : UITableViewDataSource {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: MastHeadCrousalCell.identifier) as! MastHeadCrousalCell
-            cell.setData(items)
+            
+            if bannerdata != nil {
+                
+               cell.setData((bannerdata?.arrBannerrs)!)
+                
+            }
+            
             return cell;
             
         } else {

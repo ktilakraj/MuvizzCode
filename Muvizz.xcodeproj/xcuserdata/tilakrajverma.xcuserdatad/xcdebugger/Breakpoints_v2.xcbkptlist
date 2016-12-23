@@ -156,7 +156,7 @@
                   moduleName = "Muvizz"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tilakrajverma/Documents/Git%20iOS/Git-Muvizz/MuvizzCode/SlideMenuControllerSwift/UIImageView.swift"
-                  timestampString = "504159204.66406"
+                  timestampString = "504213787.123862"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "40"
@@ -171,7 +171,7 @@
                   moduleName = "Muvizz"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tilakrajverma/Documents/Git%20iOS/Git-Muvizz/MuvizzCode/SlideMenuControllerSwift/UIImageView.swift"
-                  timestampString = "504159204.666578"
+                  timestampString = "504213787.126027"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "41"
@@ -200,46 +200,46 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlideMenuControllerSwift/DataManager/DataManager.swift"
-            timestampString = "504157102.280049"
+            timestampString = "504210981.586279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "getDatafromUrl(urlString:oncompletion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Muvizz.DataManager.getDatafromUrl (urlString : Swift.String, oncompletion : (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__ObjC.URLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Muvizz"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tilakrajverma/Documents/Git%20iOS/Git-Muvizz/MuvizzCode/SlideMenuControllerSwift/DataManager/DataManager.swift"
-                  timestampString = "504159204.675679"
+                  timestampString = "504204923.926906"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
                   offsetFromSymbolStart = "318">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Muvizz.DataManager.(getDatafromUrl (urlString : Swift.String, oncompletion : (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__ObjC.URLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()).(closure #1)"
                   moduleName = "Muvizz"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tilakrajverma/Documents/Git%20iOS/Git-Muvizz/MuvizzCode/SlideMenuControllerSwift/DataManager/DataManager.swift"
-                  timestampString = "504159204.677759"
+                  timestampString = "504204923.928404"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
                   offsetFromSymbolStart = "31">
                </Location>
             </Locations>
@@ -248,15 +248,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlideMenuControllerSwift/DataManager/DataManager.swift"
-            timestampString = "504157102.280049"
+            timestampString = "504210981.586279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "getDatafromUrl(urlString:oncompletion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -300,11 +300,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlideMenuControllerSwift/DataManager/DataManager.swift"
-            timestampString = "504157102.280049"
+            timestampString = "504204719.270616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "getBannerData(onsuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -316,11 +316,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlideMenuControllerSwift/DataManager/BannerDataModel.swift"
-            timestampString = "504158969.253496"
+            timestampString = "504211991.091098"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "init(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -328,7 +328,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlideMenuControllerSwift/MastHeadCrousalCell.swift"
@@ -338,6 +338,54 @@
             startingLineNumber = "85"
             endingLineNumber = "85"
             landmarkName = "carousel(_:viewForItemAt:reusing:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SlideMenuControllerSwift/DataManager/DataManager.swift"
+            timestampString = "504204688.742764"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "getOtherDataFromMenthod(_:sectionName:onsuccess:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SlideMenuControllerSwift/DataManager/DataManager.swift"
+            timestampString = "504204692.814704"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "getMoviesDataFromMenthod(_:sectionName:onsuccess:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SlideMenuControllerSwift/DataManager/BannerDataModel.swift"
+            timestampString = "504211978.236827"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "init(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -17,12 +17,11 @@ public class DataManager {
     }
     
     func getBannerData(onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void {
-        
+
         let urlSring = "\(Constants.API_BASE_URL)banners"
         getDatafromUrl(urlString: urlSring) { (data, response, error) in
             
             if data != nil {
-                
                 do {
                     
                     let jsonObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
@@ -40,6 +39,89 @@ public class DataManager {
             }
         }
     }
+    
+    func getOtherDataFromMenthod(_ methodParam:String,sectionName:String,onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void
+    {
+        let urlSring = "\(Constants.API_BASE_URL)movies?categories%5B%5D=\(methodParam)"
+        
+        getDatafromUrl(urlString: urlSring) { (data, response, error) in
+            
+            if data != nil {
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                    let tempObject = jsonObject as? [String: AnyObject]
+                    let theBanner_root = OtherDataSubRoot.init((tempObject?["data"] as? [AnyObject])!,headrTitle:sectionName)
+                    onsuccess(theBanner_root as AnyObject?,true)
+                    
+                }
+                catch {
+                    
+                    onsuccess(nil,false)
+                }
+            }
+            else {
+                
+                onsuccess(nil,false)
+            }
+            
+        }
+    }
+    
+    
+    func getMoviesDataFromMenthod(_ methodParam:String,sectionName:String,onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void
+    {
+        let urlSring = "\(Constants.API_BASE_URL)movies?\(methodParam)"
+        
+        getDatafromUrl(urlString: urlSring) { (data, response, error) in
+            
+            if data != nil {
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                    let tempObject = jsonObject as? [String: AnyObject]
+                    let theBanner_root = OtherDataSubRoot.init((tempObject?["data"] as? [AnyObject])!,headrTitle: sectionName)
+                    onsuccess(theBanner_root as AnyObject?,true)
+                }
+                catch {
+                    
+                    onsuccess(nil,false)
+                }
+            }
+            else {
+                
+                onsuccess(nil,false)
+            }
+            
+        }
+    }
+    
+    
+    func getBundleDataFromMenthod(_ methodParam:String,sectionName:String,onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void
+    {
+        let urlSring = "\(Constants.API_BASE_URL)products/bundles\(methodParam)"
+        
+        getDatafromUrl(urlString: urlSring) { (data, response, error) in
+            
+            if data != nil {
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                    let tempObject = jsonObject as? [AnyObject]
+                    let theBanner_root = OtherDataSubRoot.init(tempObject!,headrTitle: sectionName)
+                    onsuccess(theBanner_root as AnyObject?,true)
+                }
+                catch {
+                    
+                    onsuccess(nil,false)
+                }
+            }
+            else {
+                
+                onsuccess(nil,false)
+            }
+            
+        }
+    }
+    
+    
     
     func getDatafromUrl(urlString:String,oncompletion:@escaping (Data?, URLResponse?, Error?)->Void) -> Void
     {

@@ -32,7 +32,7 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
     //@IBOutlet weak var craousal: iCarousel!
     @IBOutlet weak var btnViewAll: UIButton!
     @IBOutlet weak var craousal: TilesScrollerView!
-    var items: [Int] = []
+    var items: OtherDataSubRoot!
     var cellSectonTitle:String = ""
     var delegate:DataTableViewCellDelegate!
     
@@ -79,7 +79,7 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
         return 215
     }
     
-    public func setCellData(_ data: [Int] , sectionTitle:String) {
+    public func setCellData(_ data: OtherDataSubRoot! , sectionTitle:String) {
         
         self.items = data
         self.lblSectionTitle.text = sectionTitle
@@ -87,7 +87,7 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
     
     func noOfItemsInTilesScrollerView(tilesScrollerView: TilesScrollerView) -> Int {
         
-        return self.items.count
+        return self.items.arrDataSet.count
     }
     
     func viewInTilesScrollerViewAtIndex(tilesScrollerView: TilesScrollerView, reusing view: UIView?, index: Int) -> UIView {
@@ -103,7 +103,7 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
    
     
     public func numberOfItems(in carousel: iCarousel) -> Int {
-        return self.items.count
+        return self.items.arrDataSet.count
     }
     
     public func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
@@ -119,7 +119,9 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
             itemView.frame = CGRect.init(x:5, y: 0, width: 80, height: 100)
         }
         
-        itemView.lblCount.text = "\(self.items[index])"
+        let  theObjectAtIndex = self.items.arrDataSet [index]
+        
+        itemView.lblCount.text = "\(theObjectAtIndex.name)"
         return itemView
     }
     

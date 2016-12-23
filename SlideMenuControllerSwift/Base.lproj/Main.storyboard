@@ -145,10 +145,10 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MastHeadCrousalCell" rowHeight="210" id="MYl-le-wZQ" customClass="MastHeadCrousalCell" customModule="Muvizz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="210"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MYl-le-wZQ" id="i7K-jq-hxb">
-                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="210"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cwm-ym-ja1" customClass="iCarousel">
@@ -175,10 +175,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DataTableViewCell" rowHeight="215" id="COi-pd-9jF" customClass="DataTableViewCell" customModule="Muvizz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="238" width="1000" height="215"/>
+                                        <rect key="frame" x="0.0" y="238" width="600" height="215"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="COi-pd-9jF" id="KJi-T6-SdK">
-                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="215"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Z-4i-iMu">
@@ -245,8 +245,19 @@
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i32-an-DyO">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
+                                                                    </imageView>
+                                                                </subviews>
                                                             </view>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstItem="i32-an-DyO" firstAttribute="leading" secondItem="j1c-U4-UTs" secondAttribute="leading" id="6In-yz-qLK"/>
+                                                                <constraint firstItem="i32-an-DyO" firstAttribute="top" secondItem="j1c-U4-UTs" secondAttribute="top" id="6b6-Lw-mq5"/>
+                                                                <constraint firstAttribute="bottom" secondItem="i32-an-DyO" secondAttribute="bottom" id="WRA-1Q-ufQ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="i32-an-DyO" secondAttribute="trailing" id="te1-nt-ELY"/>
+                                                            </constraints>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -273,6 +284,10 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="yky-PA-Jge"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yEM-e8-xf3">
+                                <rect key="frame" x="282" y="282" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.89411764705882357" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -280,7 +295,9 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MNw-nN-8ak" secondAttribute="bottom" id="47o-gV-Kd1"/>
                             <constraint firstItem="1uC-ep-Td6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="98A-3O-Xyb"/>
                             <constraint firstItem="1uC-ep-Td6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="EeA-Lj-Nbh"/>
+                            <constraint firstItem="yEM-e8-xf3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MqZ-zh-Ggm"/>
                             <constraint firstAttribute="trailing" secondItem="1uC-ep-Td6" secondAttribute="trailing" id="jnA-3j-PnW"/>
+                            <constraint firstItem="yEM-e8-xf3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pW1-nD-THs"/>
                             <constraint firstItem="MNw-nN-8ak" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="xbT-am-qCO"/>
                             <constraint firstItem="MNw-nN-8ak" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zcu-wF-y35"/>
                         </constraints>
@@ -291,6 +308,7 @@
                         <outlet property="btnMenue" destination="2Tn-WH-YCD" id="MX1-CO-wM3"/>
                         <outlet property="btnSearch" destination="5sw-fn-0Hx" id="Umc-p1-G9c"/>
                         <outlet property="imageViewLogo" destination="HSF-ad-dMZ" id="qBc-CY-9b3"/>
+                        <outlet property="loaderActivity" destination="yEM-e8-xf3" id="FCq-vs-btU"/>
                         <outlet property="tableView" destination="MNw-nN-8ak" id="OEx-Z5-027"/>
                     </connections>
                 </viewController>
@@ -432,10 +450,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="thedairycell" rowHeight="128" id="o5g-7K-3qU">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="128"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o5g-7K-3qU" id="pWa-nm-2PR">
-                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="127"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="127"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>

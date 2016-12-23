@@ -37,33 +37,134 @@ public struct BannerSubRoot {
             self.dataobj = jsonDict?["data"]
         } else  {
             
-            self.dataobj = DataMainObject((jsonDict?["data"])!) as AnyObject?
+            self.dataobj = DataMainObject((jsonDict?["data"])! as! [String : AnyObject]) as AnyObject?
         }
         self.imageNode = ImageNodeOrThumbnail((jsonDict?["image"]) as! [String:AnyObject])
     }
-   
 }
+
+
+
+public struct OtherDataSubRoot {
+    
+    var  arrDataSet = [DataMainObject]()
+    var  sectionTitle:String?
+    
+    
+    init(_ jsonObject:[AnyObject] ,headrTitle:String?) {
+        self.sectionTitle = headrTitle
+        for items in jsonObject {
+            
+            let tempItem = items as? [String:AnyObject]
+            arrDataSet.append(DataMainObject.init(tempItem!))
+        }
+    }
+}
+
+
 
 public struct DataMainObject {
     
     var id:Int?
     var name: String?
-    var thumbnail: ImageNodeOrThumbnail?
+    var thumbnail: ImageNodeOrThumbnail!
     var views: String?
     var average_rating: String?
     var length: String?
-    var products: [Product]?
+    var products: [Product]? = []
     var synopsis: String?
     var rel:String?
+    var arrMoviedataObjects = [MoviewDataObject]()
     
-    init(_ jsonObjects:AnyObject) {
+    
+    init(_ jsonObjects:[String:AnyObject]) {
         
+        self.id = jsonObjects["id"] as? Int
+        self.name = jsonObjects["name"] as? String
+        self.views = jsonObjects["views"] as? String
+        self.average_rating = jsonObjects["average_rating"] as? String
+        self.length = jsonObjects["length"] as? String
+        self.synopsis = jsonObjects["synopsis"] as? String
+        self.rel = jsonObjects["rel"] as? String
+       
+        let theProducts = jsonObjects["products"] as? [AnyObject]
+        if  theProducts != nil {
+            
+            for product in theProducts!  {
+                let tempProduct = product as! [String : AnyObject]
+                self.products?.append(Product.init(tempProduct))
+            }
+        }
+      
+        self.thumbnail = nil
+        let thumbnails = jsonObjects["thumbnail"] as? [String : AnyObject]
+        if thumbnails != nil {
+            
+            self.thumbnail = ImageNodeOrThumbnail.init(thumbnails!)
+        }
+        
+        let tempimage = jsonObjects["image"] as? [String : AnyObject]
+        if tempimage != nil {
+            
+            self.thumbnail = ImageNodeOrThumbnail.init(tempimage!)
+        }
+        
+        let tempMovieObject = jsonObjects["movies"] as? [AnyObject]
+        if tempMovieObject != nil {
+            for movieItem in tempMovieObject! {
+                let tempItem = movieItem as? [String:AnyObject]
+                self.arrMoviedataObjects.append(MoviewDataObject.init(tempItem!))
+            }
+        }
         
     }
 }
 
-
-
+public struct MoviewDataObject {
+    
+    var id:Int?
+    var name: String?
+    var thumbnail: ImageNodeOrThumbnail!
+    var views: String?
+    var average_rating: String?
+    var length: String?
+    var products: [Product]? = []
+    var synopsis: String?
+    var rel:String?
+    
+    init(_ jsonObjects:[String:AnyObject]) {
+        
+        self.id = jsonObjects["id"] as? Int
+        self.name = jsonObjects["name"] as? String
+        self.views = jsonObjects["views"] as? String
+        self.average_rating = jsonObjects["average_rating"] as? String
+        self.length = jsonObjects["length"] as? String
+        self.synopsis = jsonObjects["synopsis"] as? String
+        self.rel = jsonObjects["rel"] as? String
+        
+        let theProducts = jsonObjects["products"] as? [AnyObject]
+        if  theProducts != nil {
+            
+            for product in theProducts!  {
+                let tempProduct = product as! [String : AnyObject]
+                self.products?.append(Product.init(tempProduct))
+            }
+        }
+        
+        self.thumbnail = nil
+        let thumbnails = jsonObjects["thumbnail"] as? [String : AnyObject]
+        if thumbnails != nil {
+            
+            self.thumbnail = ImageNodeOrThumbnail.init(thumbnails!)
+        }
+        
+        let tempimage = jsonObjects["image"] as? [String : AnyObject]
+        if tempimage != nil {
+            
+            self.thumbnail = ImageNodeOrThumbnail.init(tempimage!)
+        }
+    }
+}
 
 public struct ImageNodeOrThumbnail {
     
@@ -86,16 +187,21 @@ public struct ImageNodeOrThumbnail {
 
 public struct Product {
     
-    var id:String?
+    var id:Int?
     var name: String?
     var duration:String?
     var duration_unit:String?
     var amount:String?
     var type:String?
     
-    init(_ jsonObjects : AnyObject) {
+    init(_ jsonObjects : [String:AnyObject]) {
         
-        
+        self.id = jsonObjects["id"] as? Int
+        self.name = jsonObjects["name"] as? String
+        self.duration = jsonObjects["duration"] as? String
+        self.duration_unit = jsonObjects["duration_unit"] as? String
+        self.amount = jsonObjects["amount"] as? String
+        self.type = jsonObjects["type"] as? String
     }
     
 }

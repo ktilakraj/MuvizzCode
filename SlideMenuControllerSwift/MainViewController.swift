@@ -9,8 +9,9 @@ import UIKit
 
 class MainViewController: UIViewController,DataTableViewCellDelegate {
 
+    @IBOutlet weak var loaderActivity: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-     var items: [Int] = []
+     var items: [OtherDataSubRoot] = []
      var storedOffsets = [Int: CGFloat]()
     weak var delegate: LeftMenuProtocol?
     var detailsViewController: UIViewController!
@@ -19,35 +20,136 @@ class MainViewController: UIViewController,DataTableViewCellDelegate {
     @IBOutlet weak var btnSearch: UIButton!
     @IBOutlet weak var btnMenue: UIButton!
     var  bannerdata: BannerMain?
-    
-    var mainContens = ["data1", "Free", "Pay Per View", "Subscription", "Bundles", "Recently Added"]
+    var arrContents = [OtherDataSubRoot]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-    
         
         let  menuImage:UIImage = (btnMenue.imageView?.image)!
             btnMenue .setImage(menuImage.maskWithColor(color: UIColor.white), for: UIControlState.normal)
         
-        getdataAndReload()
+         self.getdataAndReload()
     }
     
     func  getdataAndReload() {
         
-        DataManager.sharedInstance.getBannerData { (data , isSuccess) in
+        self.loaderActivity.startAnimating()
+            DataManager.sharedInstance.getBannerData { (data , isSuccess) in
+                
+                if isSuccess == true {
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.bannerdata = data as? BannerMain
+                        //self.tableView .reloadData()
+                    }
+                    
+                }
+                
+                self.getFree()
+            }
+        
+    }
+    
+    func getRecentlyAdded()  {
+        
+        DataManager.sharedInstance.getMoviesDataFromMenthod("",sectionName: "Recently Added") { (data, isSuccess) in
             
             if isSuccess == true {
-    
+                
                 DispatchQueue.main.async {
                     
-                    self.bannerdata = data as? BannerMain
+                    self.arrContents.append((data as? OtherDataSubRoot)!)
                     self.tableView .reloadData()
+                    self.loaderActivity.stopAnimating()
+                }
+                
+            } else {
+                
+                DispatchQueue.main.async {
+                    self.tableView .reloadData()
+                    self.loaderActivity.stopAnimating()
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    func getFree()  {
+        
+        DataManager.sharedInstance.getOtherDataFromMenthod("Free",sectionName: "Free") { (data, isSuccess) in
+            
+            if isSuccess == true {
+                
+                DispatchQueue.main.async {
+                    
+                    self.arrContents.append((data as? OtherDataSubRoot)!)
+                    //self.tableView .reloadData()
+                    
                 }
                 
             }
+            
+            self.payperview()
         }
     }
+    
+    func payperview()  {
+        
+        DataManager.sharedInstance.getOtherDataFromMenthod("pay%20per%20view",sectionName: "Pay Per View") { (data, isSuccess) in
+            
+            if isSuccess == true {
+                
+                DispatchQueue.main.async {
+                    
+                    self.arrContents.append((data as? OtherDataSubRoot)!)
+                    //self.tableView .reloadData()
+                }
+                
+            }
+            
+            self.subscribed()
+        }
+    }
+    func subscribed()  {
+        
+        DataManager.sharedInstance.getOtherDataFromMenthod("subscription",sectionName: "Subscription") { (data, isSuccess) in
+            
+            if isSuccess == true {
+                
+                DispatchQueue.main.async {
+                    
+                    self.arrContents.append((data as? OtherDataSubRoot)!)
+                    //self.tableView .reloadData()
+                    
+                }
+                
+            }
+            
+            self.bundle()
+        }
+    }
+    func bundle()  {
+        
+        DataManager.sharedInstance.getBundleDataFromMenthod("",sectionName: "Bundle") { (data, isSuccess) in
+            
+            if isSuccess == true {
+                
+                DispatchQueue.main.async {
+                    
+                    self.arrContents.append((data as? OtherDataSubRoot)!)
+                    //self.tableView .reloadData()
+                }
+                
+            }
+            
+            self.getRecentlyAdded()
+        }
+    }
+    
     
     @IBAction func btnMenuClick(_ sender: AnyObject) {
        
@@ -58,9 +160,6 @@ class MainViewController: UIViewController,DataTableViewCellDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        for i in 0 ... 10 {
-            items.append(i)
-        }
     }
 
 
@@ -104,7 +203,8 @@ extension MainViewController : UITableViewDelegate {
 
 extension MainViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.mainContens.count
+        
+            return self.arrContents.count+1
     }
      
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,8 +223,10 @@ extension MainViewController : UITableViewDataSource {
         } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.identifier) as! DataTableViewCell
             cell.delegate = self
-            cell.setCellData(items,sectionTitle: mainContens[indexPath.row])
-            cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+            let dataAtIndex = self.arrContents[indexPath.row-1]
+            
+            cell.setCellData(dataAtIndex,sectionTitle: dataAtIndex.sectionTitle!)
+            cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row-1)
             cell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
             return cell;
         }
@@ -155,7 +257,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
-        return items.count
+        return self.arrContents[collectionView.tag].arrDataSet.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -164,7 +266,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCollection",
                                                       for: indexPath)
         
-        //cell.te = items [indexPath.row]
+        let theImageView = cell .viewWithTag(1001) as! UIImageView
+        
+        let dataAtIndex =  self.arrContents[collectionView.tag].arrDataSet[indexPath.row]
+        
+        if (dataAtIndex.thumbnail != nil)  {
+            
+            let baseImagePath = "\(Constants.BASEURL)\(dataAtIndex.thumbnail.path)"
+            
+            theImageView.load.request(with: URL.init(string: baseImagePath)!)
+            
+        }
+       
         
         return cell
     }

@@ -11,6 +11,7 @@
 		0E75C5A61BE3CAFE00844634 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E75C5A41BE3CAFE00844634 /* Info.plist */; };
 		0EB8EBFF1BE3CF3C00BC2A99 /* SlideMenuControllerSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E75C5A51BE3CAFE00844634 /* SlideMenuControllerSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		230BF8951E05924300D26E24 /* FinalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230BF8941E05924300D26E24 /* FinalDetailViewController.swift */; };
+		2312EDA11E0EAF4A00FF0E7A /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2312EDA01E0EAF4A00FF0E7A /* FloatRatingView.swift */; };
 		232AED781DF903230084394D /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 232AED771DF903230084394D /* iCarousel.m */; };
 		232AED7C1DF903560084394D /* CustomContaintView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 232AED7A1DF903560084394D /* CustomContaintView.xib */; };
 		232AED7D1DF903560084394D /* CustomContaintView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232AED7B1DF903560084394D /* CustomContaintView1.swift */; };
@@ -108,6 +109,7 @@
 		0E75C5A41BE3CAFE00844634 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = "<group>"; };
 		0E75C5A51BE3CAFE00844634 /* SlideMenuControllerSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SlideMenuControllerSwift.h; path = Source/SlideMenuControllerSwift.h; sourceTree = "<group>"; };
 		230BF8941E05924300D26E24 /* FinalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalDetailViewController.swift; sourceTree = "<group>"; };
+		2312EDA01E0EAF4A00FF0E7A /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		232AED761DF903230084394D /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		232AED771DF903230084394D /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		232AED791DF903330084394D /* SwiftExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftExample-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -209,6 +211,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2312ED9F1E0EAF2500FF0E7A /* Rating View */ = {
+			isa = PBXGroup;
+			children = (
+				2312EDA01E0EAF4A00FF0E7A /* FloatRatingView.swift */,
+			);
+			path = "Rating View";
+			sourceTree = "<group>";
+		};
 		232AED751DF903230084394D /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +241,7 @@
 		23C7659D1E06C1C20007BF80 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2312ED9F1E0EAF2500FF0E7A /* Rating View */,
 				23EA64461E0CDD75003A817C /* ImageLoader */,
 				23C7659E1E06C1E40007BF80 /* DropDown */,
 			);
@@ -614,6 +625,7 @@
 				C539E64C1A315E87003B7CC7 /* MainViewController.swift in Sources */,
 				23C765AD1E06C1E40007BF80 /* DPDUIView+Extension.swift in Sources */,
 				23C765B21E06C1E40007BF80 /* DropDownCell.swift in Sources */,
+				2312EDA11E0EAF4A00FF0E7A /* FloatRatingView.swift in Sources */,
 				23C765AC1E06C1E40007BF80 /* DPDKeyboardListener.swift in Sources */,
 				C5BD39E01A6CDC8100D0AF95 /* UIViewController.swift in Sources */,
 				232AED7D1DF903560084394D /* CustomContaintView1.swift in Sources */,

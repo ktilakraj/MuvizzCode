@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController,DataTableViewCellDelegate {
+class MainViewController: UIViewController,DataTableViewCellDelegate, MastHeadCrousalCellDelegate {
 
     @IBOutlet weak var loaderActivity: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -211,6 +211,7 @@ extension MainViewController : UITableViewDataSource {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: MastHeadCrousalCell.identifier) as! MastHeadCrousalCell
+            cell.delegate = self
             
             if bannerdata != nil {
                 
@@ -243,6 +244,22 @@ extension MainViewController : UITableViewDataSource {
         let swiftViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
         self.detailsViewController = UINavigationController(rootViewController: swiftViewController)
         self.slideMenuController()?.changeMainViewController(self.detailsViewController, close: true)
+    }
+    
+    func didSelectedItemAtIndex(index: Int, data: BannerSubRoot) {
+        
+        print("the selected banner at index:\(data.type!)")
+        
+        if data.type!.lowercased() == "external" {
+            
+             print("the selected banner at index:\(data.dataobj as! String)")
+            UIApplication.shared.openURL(URL.init(string:data.dataobj as! String)!)
+            
+        } else if data.type!.lowercased() == "movie" {
+            
+            let mainObject = data.dataobj as? DataMainObject
+            print("the obect:\(mainObject?.length)")
+        }
     }
 }
 

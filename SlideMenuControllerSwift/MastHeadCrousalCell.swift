@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol MastHeadCrousalCellDelegate {
+    
+    func didSelectedItemAtIndex(index:Int,data:BannerSubRoot) -> Void
+}
 
 open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDataSource {
     
     @IBOutlet weak var craousal: iCarousel?
     var items: [BannerSubRoot] = []
+    var delegate: MastHeadCrousalCellDelegate!
+    
     
     class var identifier: String { return String.className(self) }
     
@@ -91,6 +97,12 @@ open class MastHeadCrousalCell : UITableViewCell, iCarouselDelegate, iCarouselDa
             return value * 1.1
         }
         return value
+    }
+    
+    public func carousel(_ carousel: iCarousel, didSelectItemAt index: Int)
+    {
+        let indexObject = items[index]
+        delegate.didSelectedItemAtIndex(index: index, data: indexObject)
     }
     
 }

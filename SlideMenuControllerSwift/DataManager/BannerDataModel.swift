@@ -61,8 +61,6 @@ public struct OtherDataSubRoot {
     }
 }
 
-
-
 public struct DataMainObject {
     
     var id:Int?
@@ -75,7 +73,6 @@ public struct DataMainObject {
     var synopsis: String?
     var rel:String?
     var arrMoviedataObjects = [MoviewDataObject]()
-    
     
     init(_ jsonObjects:[String:AnyObject]) {
         
@@ -205,5 +202,135 @@ public struct Product {
     }
     
 }
+
+public struct DetailsDataModels
+{
+    var id:Int?
+    var name: String?
+    var thumbnail: ImageNodeOrThumbnail!
+    var poster: ImageNodeOrThumbnail!
+    var views: String?
+    var average_rating: String?
+    var length: String?
+    var products: [Product]? = []
+    var synopsis: String?
+    var rel:String?
+    var hasAccess:Bool = false
+    var tags = [AnyObject]()
+    var countrycode = [AnyObject]()
+    var crew = [AnyObject]()
+    var producers = [String]()
+    var directors = [String]()
+    var cast = [String]()
+    var geners:[DefaultDataModel]?
+    
+    var categories:[DefaultDataModel]?
+    var languages:[DefaultDataModel]?
+    
+
+    init(_ jsonObjects:[String:AnyObject]) {
+        
+        self.id = jsonObjects["id"] as? Int
+        self.name = jsonObjects["name"] as? String
+        self.views = jsonObjects["views"] as? String
+        self.average_rating = jsonObjects["average_rating"] as? String
+        self.length = jsonObjects["length"] as? String
+        self.synopsis = jsonObjects["synopsis"] as? String
+        self.rel = jsonObjects["rel"] as? String
+        
+        let theProducts = jsonObjects["products"] as? [AnyObject]
+        if  theProducts != nil {
+            for product in theProducts!  {
+                let tempProduct = product as! [String : AnyObject]
+                self.products?.append(Product.init(tempProduct))
+            }
+        }
+        
+        let thegeners = jsonObjects["geners"] as? [AnyObject]
+        if  thegeners != nil {
+            for product in thegeners!  {
+                let tempProduct = product as! [String : AnyObject]
+                self.geners?.append(DefaultDataModel.init(tempProduct))
+            }
+        }
+        
+        let thecategories = jsonObjects["categories"] as? [AnyObject]
+        if  thecategories != nil {
+            for product in thecategories!  {
+            let tempProduct = product as! [String : AnyObject]
+            self.categories?.append(DefaultDataModel.init(tempProduct))
+            }
+        }
+        let thelanguages = jsonObjects["languages"] as? [AnyObject]
+        if  thelanguages != nil {
+            for product in thelanguages!  {
+                let tempProduct = product as! [String : AnyObject]
+                self.languages?.append(DefaultDataModel.init(tempProduct))
+            }
+        }
+        
+        
+        self.thumbnail = nil
+        let thumbnails = jsonObjects["thumbnail"] as? [String : AnyObject]
+        if thumbnails != nil {
+            
+            self.thumbnail = ImageNodeOrThumbnail.init(thumbnails!)
+        }
+        
+        let tempimage = jsonObjects["image"] as? [String : AnyObject]
+        if tempimage != nil {
+            
+            self.thumbnail = ImageNodeOrThumbnail.init(tempimage!)
+        }
+        
+        let tempposter = jsonObjects["poster"] as? [String : AnyObject]
+        if tempposter != nil {
+            self.poster = ImageNodeOrThumbnail.init(tempposter!)
+        }
+        
+        let thetags = jsonObjects["tags"] as? [AnyObject]
+        if  thetags != nil {
+            self.tags = thetags!
+        }
+        let countrycodes = jsonObjects["countrycode"] as? [AnyObject]
+        if  countrycodes != nil {
+            self.countrycode = countrycodes!
+        }
+        
+        let crews = jsonObjects["crew"] as? [AnyObject]
+        if  crews != nil {
+            self.crew = crews!
+        }
+        
+        let casts = jsonObjects["cast"] as? [String]
+        if  casts != nil {
+            self.cast = casts!
+        }
+        
+        let directorse = jsonObjects["directors"] as? [String]
+        if  directorse != nil {
+            self.directors = directorse!
+        }
+        let producers = jsonObjects["producers"] as? [String]
+        if  producers != nil {
+            self.cast = producers!
+        }
+    }
+}
+
+public struct DefaultDataModel {
+    var id:Int!
+    var name:String!
+    
+    init(_ jsonObject:[String:AnyObject]) {
+        
+        self.id = jsonObject["id"] as? Int
+        self.name = jsonObject["name"] as? String
+        
+    }
+    
+}
+
+
 
 

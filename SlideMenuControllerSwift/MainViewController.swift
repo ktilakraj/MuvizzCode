@@ -259,6 +259,12 @@ extension MainViewController : UITableViewDataSource {
             
             let mainObject = data.dataobj as? DataMainObject
             print("the obect:\(mainObject?.length)")
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let swiftViewController = storyboard.instantiateViewController(withIdentifier: "FinalDetailViewController") as! FinalDetailViewController
+            swiftViewController.getDetailsData(datamainObects:mainObject)
+            
+            self.navigationController?.pushViewController(swiftViewController, animated: true)
         }
     }
 }

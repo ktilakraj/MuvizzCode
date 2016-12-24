@@ -222,10 +222,11 @@ public struct DetailsDataModels
     var producers = [String]()
     var directors = [String]()
     var cast = [String]()
-    var geners:[DefaultDataModel]?
-    
-    var categories:[DefaultDataModel]?
-    var languages:[DefaultDataModel]?
+    var geners = [DefaultDataModel]()
+    var genersplainText = [String]()
+    var categories = [DefaultDataModel]()
+    var languages = [DefaultDataModel]()
+    var durationInHM: String?
     
 
     init(_ jsonObjects:[String:AnyObject]) {
@@ -246,11 +247,12 @@ public struct DetailsDataModels
             }
         }
         
-        let thegeners = jsonObjects["geners"] as? [AnyObject]
+        let thegeners = jsonObjects["genres"] as? [AnyObject]
         if  thegeners != nil {
             for product in thegeners!  {
                 let tempProduct = product as! [String : AnyObject]
-                self.geners?.append(DefaultDataModel.init(tempProduct))
+                self.geners.append(DefaultDataModel.init(tempProduct))
+                self.genersplainText.append((tempProduct["name"] as? String)!)
             }
         }
         
@@ -258,14 +260,14 @@ public struct DetailsDataModels
         if  thecategories != nil {
             for product in thecategories!  {
             let tempProduct = product as! [String : AnyObject]
-            self.categories?.append(DefaultDataModel.init(tempProduct))
+            self.categories.append(DefaultDataModel.init(tempProduct))
             }
         }
         let thelanguages = jsonObjects["languages"] as? [AnyObject]
         if  thelanguages != nil {
             for product in thelanguages!  {
                 let tempProduct = product as! [String : AnyObject]
-                self.languages?.append(DefaultDataModel.init(tempProduct))
+                self.languages.append(DefaultDataModel.init(tempProduct))
             }
         }
         
@@ -313,7 +315,14 @@ public struct DetailsDataModels
         }
         let producers = jsonObjects["producers"] as? [String]
         if  producers != nil {
-            self.cast = producers!
+            self.producers = producers!
+        }
+        
+        if  self.length != nil {
+            let number = NumberFormatter().number(from: self.length!)
+            let (h,m) = secondsToHoursMinutesSeconds(seconds: (number?.intValue)!)
+            let strcomb = "\(h)h \(m)m"
+            self.durationInHM = strcomb
         }
     }
 }

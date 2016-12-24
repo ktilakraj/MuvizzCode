@@ -19,3 +19,21 @@ enum SectionType {
     case FREEE,SUBSCRIPTION,PAY_PER_VIEW,BUNDLE,RECENTLY_ADDED
 }
 
+public func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int) {
+    return (seconds / 3600, (seconds % 3600) / 60)
+}
+
+extension String {
+    func deleteHTMLTag(tag:String) -> String {
+          return  self.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+     
+    }
+    
+    func deleteHTMLTags(tags:[String]) -> String {
+        var mutableString = self
+        for tag in tags {
+            mutableString = mutableString.deleteHTMLTag(tag: tag)
+        }
+        return mutableString
+    }
+}

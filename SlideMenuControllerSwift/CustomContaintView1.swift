@@ -73,7 +73,5 @@ class CustomContaintView1: UIView {
         }
         
     }
-    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int) {
-        return (seconds / 3600, (seconds % 3600) / 60)
-    }
+    
 }

@@ -15,3 +15,7 @@ struct Constants {
    static let  BASEURL = "http://api.muvizz.com/"
 }
 
+enum SectionType {
+    case FREEE,SUBSCRIPTION,PAY_PER_VIEW,BUNDLE,RECENTLY_ADDED
+}
+

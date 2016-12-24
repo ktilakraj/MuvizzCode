@@ -53,7 +53,7 @@ class MainViewController: UIViewController,DataTableViewCellDelegate {
     
     func getRecentlyAdded()  {
         
-        DataManager.sharedInstance.getMoviesDataFromMenthod("",sectionName: "Recently Added") { (data, isSuccess) in
+        DataManager.sharedInstance.getMoviesDataFromMenthod("",sectionName: SectionType.RECENTLY_ADDED) { (data, isSuccess) in
             
             if isSuccess == true {
                 
@@ -80,7 +80,7 @@ class MainViewController: UIViewController,DataTableViewCellDelegate {
     
     func getFree()  {
         
-        DataManager.sharedInstance.getOtherDataFromMenthod("Free",sectionName: "Free") { (data, isSuccess) in
+        DataManager.sharedInstance.getOtherDataFromMenthod("Free",sectionName: SectionType.FREEE) { (data, isSuccess) in
             
             if isSuccess == true {
                 
@@ -99,7 +99,7 @@ class MainViewController: UIViewController,DataTableViewCellDelegate {
     
     func payperview()  {
         
-        DataManager.sharedInstance.getOtherDataFromMenthod("pay%20per%20view",sectionName: "Pay Per View") { (data, isSuccess) in
+        DataManager.sharedInstance.getOtherDataFromMenthod("pay%20per%20view",sectionName: SectionType.PAY_PER_VIEW) { (data, isSuccess) in
             
             if isSuccess == true {
                 
@@ -116,7 +116,7 @@ class MainViewController: UIViewController,DataTableViewCellDelegate {
     }
     func subscribed()  {
         
-        DataManager.sharedInstance.getOtherDataFromMenthod("subscription",sectionName: "Subscription") { (data, isSuccess) in
+        DataManager.sharedInstance.getOtherDataFromMenthod("subscription",sectionName: SectionType.SUBSCRIPTION) { (data, isSuccess) in
             
             if isSuccess == true {
                 
@@ -134,7 +134,7 @@ class MainViewController: UIViewController,DataTableViewCellDelegate {
     }
     func bundle()  {
         
-        DataManager.sharedInstance.getBundleDataFromMenthod("",sectionName: "Bundle") { (data, isSuccess) in
+        DataManager.sharedInstance.getBundleDataFromMenthod("",sectionName: SectionType.BUNDLE) { (data, isSuccess) in
             
             if isSuccess == true {
                 
@@ -233,9 +233,12 @@ extension MainViewController : UITableViewDataSource {
     }
     
     //MARK:VIEW ALL CLICK HERE
-    func didClickOnViewAll() {
+    func didClickOnViewAll(index: Int) {
         
-        print("the View All Click")
+       
+        let dataAtIndex = self.arrContents[index]
+         print("the View All Click\(dataAtIndex.sectionTitle)")
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let swiftViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
         self.detailsViewController = UINavigationController(rootViewController: swiftViewController)
@@ -280,6 +283,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
        
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+          let dataAtIndex =  self.arrContents[collectionView.tag].arrDataSet[indexPath.row]
+        print("\(dataAtIndex.name!)")
     }
 }
 

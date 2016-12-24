@@ -48,10 +48,10 @@ public struct BannerSubRoot {
 public struct OtherDataSubRoot {
     
     var  arrDataSet = [DataMainObject]()
-    var  sectionTitle:String?
+    var  sectionTitle:SectionType?
     
     
-    init(_ jsonObject:[AnyObject] ,headrTitle:String?) {
+    init(_ jsonObject:[AnyObject] ,headrTitle:SectionType?) {
         self.sectionTitle = headrTitle
         for items in jsonObject {
             

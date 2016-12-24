@@ -11,7 +11,7 @@ import UIKit
 
 protocol  DataTableViewCellDelegate {
     
-    func didClickOnViewAll() -> Void
+    func didClickOnViewAll(index:Int) -> Void
 
 }
 struct DataTableViewCellData {
@@ -52,7 +52,7 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
     
     func btnViewAllClick(sender:UIButton) -> Void {
         
-        self.delegate.didClickOnViewAll()
+        self.delegate.didClickOnViewAll(index: sender.tag)
         
     }
     
@@ -61,6 +61,7 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
         collectionView.tag = row
+        self.btnViewAll.tag = row
         collectionView.reloadData()
     }
  
@@ -79,10 +80,31 @@ class DataTableViewCell : BaseTableViewCell, iCarouselDataSource, iCarouselDeleg
         return 215
     }
     
-    public func setCellData(_ data: OtherDataSubRoot! , sectionTitle:String) {
+    public func setCellData(_ data: OtherDataSubRoot! , sectionTitle:SectionType) {
         
         self.items = data
-        self.lblSectionTitle.text = sectionTitle
+        switch sectionTitle {
+        case .FREEE:
+            self.lblSectionTitle.text = "Free"
+            break
+        case .PAY_PER_VIEW:
+            self.lblSectionTitle.text = "Pay Per View"
+            break
+            
+        case .SUBSCRIPTION:
+            self.lblSectionTitle.text = "Subscription"
+            break
+        case .BUNDLE:
+            self.lblSectionTitle.text = "Bundle"
+            break
+        case .RECENTLY_ADDED:
+            self.lblSectionTitle.text = "Recently Added"
+            break
+            
+        default:
+            self.lblSectionTitle.text = ""
+        }
+        
     }
     
     func noOfItemsInTilesScrollerView(tilesScrollerView: TilesScrollerView) -> Int {

@@ -40,7 +40,7 @@ public class DataManager {
         }
     }
     
-    func getOtherDataFromMenthod(_ methodParam:String,sectionName:String,onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void
+    func getOtherDataFromMenthod(_ methodParam:String,sectionName:SectionType,onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void
     {
         let urlSring = "\(Constants.API_BASE_URL)movies?categories%5B%5D=\(methodParam)"
         
@@ -68,7 +68,7 @@ public class DataManager {
     }
     
     
-    func getMoviesDataFromMenthod(_ methodParam:String,sectionName:String,onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void
+    func getMoviesDataFromMenthod(_ methodParam:String,sectionName:SectionType,onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void
     {
         let urlSring = "\(Constants.API_BASE_URL)movies?\(methodParam)"
         
@@ -95,7 +95,7 @@ public class DataManager {
     }
     
     
-    func getBundleDataFromMenthod(_ methodParam:String,sectionName:String,onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void
+    func getBundleDataFromMenthod(_ methodParam:String,sectionName:SectionType,onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void
     {
         let urlSring = "\(Constants.API_BASE_URL)products/bundles\(methodParam)"
         

@@ -310,8 +310,23 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-          let dataAtIndex =  self.arrContents[collectionView.tag].arrDataSet[indexPath.row]
+        let maindataAtIndex = self.arrContents[collectionView.tag]
+        
+        if maindataAtIndex.sectionTitle == SectionType.BUNDLE {
+            
+            return 
+        }
+        
+        let dataAtIndex =  self.arrContents[collectionView.tag].arrDataSet[indexPath.row]
         print("\(dataAtIndex.name!)")
+        let mainObject = dataAtIndex
+        print("the obect:\(dataAtIndex.length)")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let swiftViewController = storyboard.instantiateViewController(withIdentifier: "FinalDetailViewController") as! FinalDetailViewController
+        swiftViewController.getDetailsData(datamainObects:mainObject)
+        
+        self.navigationController?.pushViewController(swiftViewController, animated: true)
     }
 }
 

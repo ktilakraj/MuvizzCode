@@ -56,7 +56,7 @@ public struct OtherDataSubRoot {
         for items in jsonObject {
             
             let tempItem = items as? [String:AnyObject]
-            arrDataSet.append(DataMainObject.init(tempItem!))
+        arrDataSet.append(DataMainObject.init(tempItem!))
         }
     }
 }
@@ -72,7 +72,10 @@ public struct DataMainObject {
     var products: [Product]? = []
     var synopsis: String?
     var rel:String?
-    var arrMoviedataObjects = [MoviewDataObject]()
+    var arrMoviedataObjects = [DataMainObject]()
+    
+    var original_price:String = ""
+    var amount:String = ""
     
     init(_ jsonObjects:[String:AnyObject]) {
         
@@ -83,7 +86,15 @@ public struct DataMainObject {
         self.length = jsonObjects["length"] as? String
         self.synopsis = jsonObjects["synopsis"] as? String
         self.rel = jsonObjects["rel"] as? String
-       
+        
+        if jsonObjects["original_price"] != nil {
+             self.original_price = jsonObjects["original_price"] as! String
+        }
+        if jsonObjects["amount"] != nil {
+            
+            self.amount = jsonObjects["amount"] as! String
+        }
+    
         let theProducts = jsonObjects["products"] as? [AnyObject]
         if  theProducts != nil {
             
@@ -110,7 +121,7 @@ public struct DataMainObject {
         if tempMovieObject != nil {
             for movieItem in tempMovieObject! {
                 let tempItem = movieItem as? [String:AnyObject]
-                self.arrMoviedataObjects.append(MoviewDataObject.init(tempItem!))
+                self.arrMoviedataObjects.append(DataMainObject.init(tempItem!))
             }
         }
         

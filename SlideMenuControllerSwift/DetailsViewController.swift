@@ -17,6 +17,7 @@ class DetailsViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var lblDetails: UILabel!
     var tempSubmenuDetals : SubmenuDetails?
     var arrLanguageDetas = [String]()
+    var datamainObjets = [DataMainObject]()
     var  arrAllCards = [DataMainObject]()
     var  selectedLanguage:String = "All"
     
@@ -31,7 +32,22 @@ class DetailsViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         
         setupData()
-        parsing()
+
+        chooseArticleButton.isHidden = false
+        lblDetails.isHidden = false
+        
+        if tempSubmenuDetals?.subMenuId != 1005
+        {
+            parsing()
+            
+        } else {
+            
+            chooseArticleButton.isHidden = true
+            lblDetails.isHidden = true
+            self.arrAllCards = self.datamainObjets
+            self.collectionviewDetais.reloadData()
+        }
+        
        
     }
     
@@ -49,7 +65,6 @@ class DetailsViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.viewWillAppear(animated)
         self.setNavigationBarItem()
        
-        
     }
     
     var submenuDetals: SubmenuDetails?{

@@ -17,6 +17,7 @@
 		232AED7D1DF903560084394D /* CustomContaintView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232AED7B1DF903560084394D /* CustomContaintView1.swift */; };
 		232AED7F1DF903E20084394D /* MastHeadCrousalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232AED7E1DF903E20084394D /* MastHeadCrousalCell.swift */; };
 		234720E61E0062B10053C3CC /* TilesScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234720E51E0062B10053C3CC /* TilesScrollerView.swift */; };
+		235B89431E0FC2BE004D4E15 /* BundleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B89421E0FC2BE004D4E15 /* BundleDetailsViewController.swift */; };
 		2363CCE51E0C5185008A3B6D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2363CCE41E0C5185008A3B6D /* DataManager.swift */; };
 		23C765AB1E06C1E40007BF80 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C765A11E06C1E40007BF80 /* DPDConstants.swift */; };
 		23C765AC1E06C1E40007BF80 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C765A21E06C1E40007BF80 /* DPDKeyboardListener.swift */; };
@@ -117,6 +118,7 @@
 		232AED7B1DF903560084394D /* CustomContaintView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomContaintView1.swift; sourceTree = "<group>"; };
 		232AED7E1DF903E20084394D /* MastHeadCrousalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastHeadCrousalCell.swift; sourceTree = "<group>"; };
 		234720E51E0062B10053C3CC /* TilesScrollerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TilesScrollerView.swift; sourceTree = "<group>"; };
+		235B89421E0FC2BE004D4E15 /* BundleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleDetailsViewController.swift; sourceTree = "<group>"; };
 		2363CCE41E0C5185008A3B6D /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		23C7659F1E06C1E40007BF80 /* DropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDown.h; sourceTree = "<group>"; };
 		23C765A11E06C1E40007BF80 /* DPDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				C539E64B1A315E87003B7CC7 /* MainViewController.swift */,
 				C539E66B1A316C78003B7CC7 /* LeftViewController.swift */,
 				C539E66D1A316F5F003B7CC7 /* RightViewController.swift */,
+				235B89421E0FC2BE004D4E15 /* BundleDetailsViewController.swift */,
 				C5BD39D91A6CD12300D0AF95 /* DetailsViewController.swift */,
 				C5BD39DB1A6CD15700D0AF95 /* TheDiaryViewController.swift */,
 				C5BD39DD1A6CD17B00D0AF95 /* LoginViewController.swift */,
@@ -636,6 +639,7 @@
 				C5BF6A8C1BF340020064C18E /* ExSlideMenuController.swift in Sources */,
 				C5C1CE5D1A70F27500B6E411 /* BaseTableViewCell.swift in Sources */,
 				C539E66C1A316C78003B7CC7 /* LeftViewController.swift in Sources */,
+				235B89431E0FC2BE004D4E15 /* BundleDetailsViewController.swift in Sources */,
 				C5BF6A821BEEF1A70064C18E /* DataTableViewCell.swift in Sources */,
 				C539E6471A315E87003B7CC7 /* AppDelegate.swift in Sources */,
 				C5F179D21BEB2FAF00EEDD9A /* UIColor.swift in Sources */,

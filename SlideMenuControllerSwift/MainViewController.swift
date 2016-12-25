@@ -255,6 +255,9 @@ extension MainViewController : UITableViewDataSource {
         case SectionType.RECENTLY_ADDED:
             subMenuDetails.subMenuTitle = "Recently Added"
             subMenuDetails.subMenuId = 1004
+        case SectionType.BUNDLE:
+            subMenuDetails.subMenuTitle = "Bundle"
+            subMenuDetails.subMenuId = 1005
         default:
             return
         }
@@ -262,8 +265,10 @@ extension MainViewController : UITableViewDataSource {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let swiftViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
         
+        swiftViewController.datamainObjets = dataAtIndex.arrDataSet
         swiftViewController.submenuDetals = subMenuDetails
         swiftViewController.setupData()
+        
         
         
         self.detailsViewController = UINavigationController(rootViewController: swiftViewController)
@@ -337,6 +342,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let maindataAtIndex = self.arrContents[collectionView.tag]
         
         if maindataAtIndex.sectionTitle == SectionType.BUNDLE {
+        
+            let dataAtIndex =  maindataAtIndex.arrDataSet[indexPath.row]
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let swiftViewController = storyboard.instantiateViewController(withIdentifier: "BundleDetailsViewController") as! BundleDetailsViewController
+            
+            swiftViewController.setUpdataObject(dataObject: dataAtIndex)
+            swiftViewController.setupData()
+            
+//            self.detailsViewController = UINavigationController(rootViewController: swiftViewController)
+//            self.slideMenuController()?.changeMainViewController(self.detailsViewController, close: true)
+            self.navigationController?.pushViewController(swiftViewController, animated: true)
             
             return
         }

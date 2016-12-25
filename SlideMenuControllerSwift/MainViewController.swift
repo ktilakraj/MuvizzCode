@@ -8,11 +8,11 @@
 import UIKit
 
 class MainViewController: UIViewController,DataTableViewCellDelegate, MastHeadCrousalCellDelegate {
-
+    
     @IBOutlet weak var loaderActivity: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-     var items: [OtherDataSubRoot] = []
-     var storedOffsets = [Int: CGFloat]()
+    var items: [OtherDataSubRoot] = []
+    var storedOffsets = [Int: CGFloat]()
     weak var delegate: LeftMenuProtocol?
     var detailsViewController: UIViewController!
     
@@ -26,28 +26,28 @@ class MainViewController: UIViewController,DataTableViewCellDelegate, MastHeadCr
         super.viewDidLoad()
         
         let  menuImage:UIImage = (btnMenue.imageView?.image)!
-            btnMenue .setImage(menuImage.maskWithColor(color: UIColor.white), for: UIControlState.normal)
+        btnMenue .setImage(menuImage.maskWithColor(color: UIColor.white), for: UIControlState.normal)
         
-         self.getdataAndReload()
+        self.getdataAndReload()
     }
     
     func  getdataAndReload() {
         
         self.loaderActivity.startAnimating()
-            DataManager.sharedInstance.getBannerData { (data , isSuccess) in
+        DataManager.sharedInstance.getBannerData { (data , isSuccess) in
+            
+            if isSuccess == true {
                 
-                if isSuccess == true {
+                DispatchQueue.main.async {
                     
-                    DispatchQueue.main.async {
-                        
-                        self.bannerdata = data as? BannerMain
-                        //self.tableView .reloadData()
-                    }
-                    
+                    self.bannerdata = data as? BannerMain
+                    //self.tableView .reloadData()
                 }
                 
-                self.getFree()
             }
+            
+            self.getFree()
+        }
         
     }
     
@@ -152,8 +152,8 @@ class MainViewController: UIViewController,DataTableViewCellDelegate, MastHeadCr
     
     
     @IBAction func btnMenuClick(_ sender: AnyObject) {
-       
-         self.openLeft()
+        
+        self.openLeft()
     }
     @IBAction func btnSearchClick(_ sender: AnyObject) {
     }
@@ -161,8 +161,8 @@ class MainViewController: UIViewController,DataTableViewCellDelegate, MastHeadCr
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
-
+    
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
     }
@@ -170,10 +170,10 @@ class MainViewController: UIViewController,DataTableViewCellDelegate, MastHeadCr
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setNavigationBarItem()
-       
+        
         //self.navigationController?.navigationBar.isHidden = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -187,7 +187,7 @@ extension MainViewController : UITableViewDelegate {
                 return 0
             }
             if (self.bannerdata?.arrBannerrs.count)! > 0  {
-                 return MastHeadCrousalCell.height()
+                return MastHeadCrousalCell.height()
             }
             return 0
         }
@@ -204,9 +204,9 @@ extension MainViewController : UITableViewDelegate {
 extension MainViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-            return self.arrContents.count+1
+        return self.arrContents.count+1
     }
-     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
@@ -215,14 +215,14 @@ extension MainViewController : UITableViewDataSource {
             
             if bannerdata != nil {
                 
-               cell.setData((bannerdata?.arrBannerrs)!)
+                cell.setData((bannerdata?.arrBannerrs)!)
                 
             }
             
             return cell;
             
         } else {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.identifier) as! DataTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.identifier) as! DataTableViewCell
             cell.delegate = self
             let dataAtIndex = self.arrContents[indexPath.row-1]
             
@@ -236,12 +236,36 @@ extension MainViewController : UITableViewDataSource {
     //MARK:VIEW ALL CLICK HERE
     func didClickOnViewAll(index: Int) {
         
-       
+        
+        var subMenuDetails = SubmenuDetails()
+        
         let dataAtIndex = self.arrContents[index]
-         print("the View All Click\(dataAtIndex.sectionTitle)")
-
+        print("the View All Click\(dataAtIndex.sectionTitle)")
+        
+        switch dataAtIndex.sectionTitle! {
+        case SectionType.FREEE:
+            subMenuDetails.subMenuTitle = "free"
+            subMenuDetails.subMenuId = 1001
+        case SectionType.SUBSCRIPTION:
+            subMenuDetails.subMenuTitle = "subscription"
+            subMenuDetails.subMenuId = 1002
+        case SectionType.PAY_PER_VIEW:
+            subMenuDetails.subMenuTitle = "pay per view"
+            subMenuDetails.subMenuId = 1003
+        case SectionType.RECENTLY_ADDED:
+            subMenuDetails.subMenuTitle = "Recently Added"
+            subMenuDetails.subMenuId = 1004
+        default:
+            return
+        }
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let swiftViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        
+        swiftViewController.submenuDetals = subMenuDetails
+        swiftViewController.setupData()
+        
+        
         self.detailsViewController = UINavigationController(rootViewController: swiftViewController)
         self.slideMenuController()?.changeMainViewController(self.detailsViewController, close: true)
     }
@@ -252,7 +276,7 @@ extension MainViewController : UITableViewDataSource {
         
         if data.type!.lowercased() == "external" {
             
-             print("the selected banner at index:\(data.dataobj as! String)")
+            print("the selected banner at index:\(data.dataobj as! String)")
             UIApplication.shared.openURL(URL.init(string:data.dataobj as! String)!)
             
         } else if data.type!.lowercased() == "movie" {
@@ -273,9 +297,9 @@ extension MainViewController : UITableViewDataSource {
 // func tableView(tableView: UITableView,
 //                        didEndDisplayingCell cell: UITableViewCell,
 //                        forRowAtIndexPath indexPath: NSIndexPath) {
-//    
+//
 //    guard let tableViewCell = cell as? DataTableViewCell else { return }
-//    
+//
 //    storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
 //}
 
@@ -303,7 +327,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             theImageView.load.request(with: URL.init(string: baseImagePath)!)
             
         }
-       
+        
         
         return cell
     }
@@ -314,7 +338,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if maindataAtIndex.sectionTitle == SectionType.BUNDLE {
             
-            return 
+            return
         }
         
         let dataAtIndex =  self.arrContents[collectionView.tag].arrDataSet[indexPath.row]

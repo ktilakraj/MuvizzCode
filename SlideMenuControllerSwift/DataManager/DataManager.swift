@@ -10,14 +10,17 @@ import Foundation
 
 public class DataManager {
     
-     static let sharedInstance = DataManager()
+    static let sharedInstance = DataManager()
+    var arrSubCatagories = [DefaultDataModel]()
+    var arrLanguages = [DefaultDataModel]()
+
     func doSomthing()  {
         
         print("Hello check singlton")
     }
     
     func getBannerData(onsuccess:@escaping (AnyObject?,Bool)-> Void) -> Void {
-
+        
         let urlSring = "\(Constants.API_BASE_URL)banners"
         getDatafromUrl(urlString: urlSring) { (data, response, error) in
             
@@ -141,5 +144,65 @@ public class DataManager {
             }
         }
         task.resume()
+    }
+    
+    func getData(urlString:String,oncompletion:@escaping (_ data:[DefaultDataModel])->Void) {
+        
+        
+        let urlString:String = urlString
+        
+        getDatafromUrl(urlString: urlString) { (data, response, error) in
+            var arrData = [DefaultDataModel]()
+            if error == nil && data != nil {
+                
+                do {
+                    let responseData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                    
+                    let thedata = responseData as? [AnyObject]
+                    
+                    for indata in thedata! {
+                        let tempData = indata as? [String:AnyObject]
+                        arrData.append(DefaultDataModel.init(tempData!))
+                    }
+                    
+                } catch {
+                    
+                    print("the error in response:\(error.localizedDescription)")
+                }
+                
+            }
+            
+            oncompletion(arrData)
+        }
+        
+    }
+    
+    //MARK:Language
+    func getLanguageData(onSuccess:@escaping ()->Void) {
+        
+        getData(urlString: "http://api.muvizz.com/api/v1/languages") { (
+            arr) in
+            
+            if arr.count > 0 {
+                self.arrLanguages = arr
+            }
+            
+            onSuccess()
+        }
+        
+    }
+     //MARK:Catagories
+    func getCatagoriesData(onSuccess:@escaping ()->Void) {
+        
+        getData(urlString: "http://api.muvizz.com/api/v1/categories") { (
+            arr) in
+            
+            if arr.count > 0 {
+                self.arrSubCatagories = arr
+            }
+            
+            onSuccess()
+        }
+        
     }
 }

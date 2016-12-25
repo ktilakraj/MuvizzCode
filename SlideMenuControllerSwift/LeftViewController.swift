@@ -26,29 +26,31 @@ public struct MenuDetails {
     var  menuId:Int
     var  subMenus = [SubmenuDetails]()
     var  isExpanded:Bool = false
-    init(title:String , id:Int , isExpand:Bool, arrExpanded:AnyObject?)
+    init(title:String , id:Int , isExpand:Bool, arrExpanded:AnyObject?,arrSubCatagory:[DefaultDataModel])
     {
         menuTitle = title
         menuId = id
         isExpanded = isExpand
-        let theSubMenu  = arrExpanded as? Array<AnyObject>
-        for item in theSubMenu! {
-            
-            let theItem = item as! Dictionary<String ,AnyObject>
-            let submen =  SubmenuDetails(title: theItem["Submenutitle"] as! String,id: theItem["submenuId"] as! Int)
-            subMenus.append(submen)
-            
+        for item in arrSubCatagory {
+            if menuId == 102 {
+            let submen =  SubmenuDetails(title: item.name ,id: item.id)
+                subMenus.append(submen)
+            }
         }
     }
 }
 
 public struct SubmenuDetails {
-    var  subMenuTitle:String
-    var  subMenuId:Int
+    var  subMenuTitle:String = ""
+    var  subMenuId:Int = -1
     
     init( title:String , id:Int) {
         subMenuTitle = title
         subMenuId = id
+    }
+    
+    init() {
+        
     }
 }
 
@@ -57,6 +59,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     @IBOutlet weak var tableView: UITableView!
     var menus = [MenuDetails]()
+    var menusSubCat = [DefaultDataModel]()
     var mainViewController: UIViewController!
     var detailsViewController: UIViewController!
     var theDairyViewController: UIViewController!
@@ -84,12 +87,18 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             let theIsexpanded = theMenueItem["isexpanded"] as! Bool
             let theexpendeditem = theMenueItem["expendeditem"]
             
-         let menueDetails = MenuDetails(title: theTitle as! String, id: theId as! Int, isExpand: theIsexpanded, arrExpanded: theexpendeditem)
+            let menueDetails = MenuDetails(title: theTitle as! String, id: theId as! Int, isExpand: theIsexpanded, arrExpanded: theexpendeditem,arrSubCatagory:self.menusSubCat)
             menus.append(menueDetails)
             
         }
-    print("the array:\(menus)")
+        print("the array:\(menus)")
     
+    }
+    
+    func setDataFromDataManager(arr:[DefaultDataModel]) -> Void {
+        
+        self.menusSubCat = arr
+        
     }
     
    
@@ -152,14 +161,14 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     func changeSubViewController(_ submenuDetail:SubmenuDetails) -> Void {
         
-         self.slideMenuController()?.changeMainViewController(self.detailsViewController, close: true)
-         let vc = (self.slideMenuController()?.mainViewController as? UINavigationController)?.topViewController
-        if (vc?.isKind(of: DetailsViewController.self))!  {
-            
-            let viewController = vc as? DetailsViewController
-            viewController?.submenuDetals = submenuDetail
-            viewController?.setupData()
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let swiftViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        
+        swiftViewController.submenuDetals = submenuDetail
+        swiftViewController.setupData()
+        let detailsViewController = UINavigationController(rootViewController: swiftViewController)
+         self.slideMenuController()?.changeMainViewController(detailsViewController, close: true)
+
     }
 }
 
